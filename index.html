@@ -77,7 +77,7 @@
             color: inherit;
             text-decoration: none;
             transition: all 0.3s ease;
-            display: none; 
+            display: none; /* 隐藏左上角的MH logo */
         }
 
         .nav-links {
@@ -87,7 +87,7 @@
         }
 
         .nav-links a {
-            color: white; 
+            color: white; /* 导航链接改为白色 */
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
@@ -149,6 +149,7 @@
             transition: transform 0.3s ease;
             position: relative;
             overflow: hidden;
+            /* 添加背景图片样式 */
             background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50%" x="50%" text-anchor="middle" dominant-baseline="middle" font-size="40" fill="white">📷</text></svg>');
             background-size: cover;
             background-position: center;
@@ -528,6 +529,7 @@
         <div class="hero-content">
             <!-- Profile Image Placeholder -->
             <div class="profile-image" style="background-image: url('./images/profile.jpg');">
+                <!-- 照片会作为背景显示，这里不需要文字 -->
             </div>
             
             <h1>Minzhi Huang</h1>
@@ -631,8 +633,11 @@
             }
         });
 
-        // Smooth scrolling for navigation links
+        // Smooth scrolling for navigation links (only for internal anchor links)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            // Skip if this is an external file link
+            if (anchor.getAttribute('href').includes('.html')) return;
+            
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
