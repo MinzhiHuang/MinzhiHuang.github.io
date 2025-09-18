@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minzhi Huang - AI Engineer & Data Analyst</title>
+    <title>Minzhi Huang - Data Analyst & AI Engineer</title>
     <style>
         * {
             margin: 0;
@@ -20,7 +20,7 @@
         /* Hero Section with Personal Photo */
         .hero {
             height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 50%, #00b894 100%);
             position: relative;
             display: flex;
             align-items: center;
@@ -77,6 +77,7 @@
             color: inherit;
             text-decoration: none;
             transition: all 0.3s ease;
+            display: none; /* 隐藏左上角的MH logo */
         }
 
         .nav-links {
@@ -86,7 +87,7 @@
         }
 
         .nav-links a {
-            color: inherit;
+            color: white; /* 导航链接改为白色 */
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
@@ -148,6 +149,10 @@
             transition: transform 0.3s ease;
             position: relative;
             overflow: hidden;
+            /* 添加背景图片样式 */
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50%" x="50%" text-anchor="middle" dominant-baseline="middle" font-size="40" fill="white">📷</text></svg>');
+            background-size: cover;
+            background-position: center;
         }
 
         .profile-image:hover {
@@ -207,24 +212,27 @@
         /* Action Buttons */
         .hero-buttons {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .btn {
-            padding: 15px 30px;
+            padding: 12px 20px;
             border: none;
             border-radius: 50px;
             font-weight: 600;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
             overflow: hidden;
+            font-size: 0.9rem;
         }
 
         .btn-primary {
@@ -296,12 +304,11 @@
 
         /* Skills Preview */
         .skills-preview {
-            position: absolute;
-            bottom: 50px;
-            left: 50%;
-            transform: translateX(-50%);
+            margin-top: 30px;
             display: flex;
-            gap: 20px;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
             z-index: 2;
         }
 
@@ -323,7 +330,104 @@
         }
 
         /* Responsive Design */
+        /* Content Sections */
+        .content-section {
+            padding: 80px 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title .emoji {
+            font-size: 2.2rem;
+        }
+
+        .section-title .text {
+            background: linear-gradient(45deg, #0984e3, #00b894);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Subsection styling */
+        .subsection-title {
+            font-size: 1.8rem;
+            color: #0984e3;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        .coming-soon {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(116, 185, 255, 0.3);
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 184, 148, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .coming-soon:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 184, 148, 0.25);
+            border-color: rgba(0, 184, 148, 0.5);
+        }
+
+        .coming-soon h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #74b9ff, #00b894);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .coming-soon p {
+            font-size: 1.1rem;
+            color: #2d3436;
+            line-height: 1.6;
+        }
+
+        /* Single Background Color for Content */
+        .content-background {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f0f8ff 40%, #f5fbff 70%, #e8f5e8 100%);
+            min-height: 100vh;
+            padding: 40px 0;
+        }
+
+        /* Remove alternating colors */
+        .section-alt, .section-blue, .section-green {
+            background: transparent;
+            color: inherit;
+        }
+
         @media (max-width: 768px) {
+            .content-section {
+                padding: 60px 20px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .coming-soon {
+                padding: 40px 20px;
+            }
+        }
             .nav {
                 padding: 15px 20px;
             }
@@ -341,14 +445,27 @@
             }
             
             .hero-buttons {
-                flex-direction: column;
-                align-items: center;
+                gap: 10px;
+                padding: 0 20px;
+            }
+            
+            .btn {
+                flex: 1;
+                min-width: 140px;
+                justify-content: center;
+                font-size: 0.8rem;
+                padding: 10px 15px;
             }
             
             .skills-preview {
-                flex-wrap: wrap;
-                bottom: 30px;
+                margin-top: 20px;
+                gap: 10px;
                 padding: 0 20px;
+            }
+            
+            .skill-badge {
+                font-size: 0.8rem;
+                padding: 8px 15px;
             }
             
             .profile-image {
@@ -361,7 +478,7 @@
         /* Scroll indicator */
         .scroll-indicator {
             position: absolute;
-            bottom: 30px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             animation: bounce 2s infinite;
@@ -392,7 +509,7 @@
                 <li><a href="#about">ABOUT</a></li>
                 <li><a href="#projects">PROJECTS</a></li>
                 <li><a href="#blog">BLOG</a></li>
-                <li><a href="#contact">CONTACT</a></li>
+                <li><a href="https://www.linkedin.com/in/minzhih/" target="_blank" rel="noopener noreferrer">CONTACT</a></li>
             </ul>
         </div>
     </nav>
@@ -411,40 +528,99 @@
 
         <div class="hero-content">
             <!-- Profile Image Placeholder -->
-            <div class="profile-image">
-                MH
+            <div class="profile-image" style="background-image: url('你的照片URL链接');">
+                <!-- 照片会作为背景显示，这里不需要文字 -->
             </div>
             
             <h1>Minzhi Huang</h1>
-            <div class="subtitle">AI Engineer & Data Analyst</div>
+            <div class="subtitle">Data Analyst & AI Engineer</div>
             <p class="description">
-                🚀 Transforming complex data into intelligent solutions through AI agents, LLM applications, and advanced analytics that drive measurable business impact
+                📊 Transforming complex data into actionable business insights through statistical analysis, interactive dashboards, and intelligent AI solutions that drive measurable impact across organizations
             </p>
             
             <div class="hero-buttons">
                 <a href="#projects" class="btn btn-primary">
-                    🔥 View My Work
+                    📊 Data Analyst Work
                 </a>
-                <a href="#contact" class="btn btn-secondary">
+                <a href="#projects" class="btn btn-primary">
+                    🔬 Data Scientist Work
+                </a>
+                <a href="#projects" class="btn btn-primary">
+                    🤖 NLP/AI Work
+                </a>
+                <a href="mailto:huangminzxx@gmail.com" class="btn btn-secondary">
                     📫 Let's Connect
                 </a>
             </div>
+            
+            <!-- Skills Preview moved here -->
+            <div class="skills-preview">
+                <div class="skill-badge">Python</div>
+                <div class="skill-badge">LangChain</div>
+                <div class="skill-badge">Tableau</div>
+                <div class="skill-badge">FastAPI</div>
+                <div class="skill-badge">SQL</div>
+            </div>
         </div>
 
-        <!-- Skills Preview -->
-        <div class="skills-preview">
-            <div class="skill-badge">Python</div>
-            <div class="skill-badge">LangChain</div>
-            <div class="skill-badge">Tableau</div>
-            <div class="skill-badge">FastAPI</div>
-            <div class="skill-badge">AI Agents</div>
-        </div>
+        <!-- Skills Preview moved to hero content above -->
 
         <!-- Scroll Indicator -->
         <div class="scroll-indicator">
             <div style="font-size: 1.5rem;">↓</div>
         </div>
     </section>
+
+    <!-- Content Background Wrapper -->
+    <div class="content-background">
+        <!-- Data Analyst Work Section -->
+        <section class="content-section" id="data-analyst">
+            <h2 class="section-title">
+                <span class="emoji">📊</span>
+                <span class="text">Data Analyst Work</span>
+            </h2>
+            <div class="coming-soon">
+                <h3>🚀 Exciting Projects Coming Soon</h3>
+                <p>Statistical analysis, interactive dashboards, and business intelligence solutions currently in development...</p>
+            </div>
+        </section>
+
+        <!-- Data Scientist Work Section -->
+        <section class="content-section" id="data-scientist">
+            <h2 class="section-title">
+                <span class="emoji">🔬</span>
+                <span class="text">Data Scientist Work</span>
+            </h2>
+            <div class="coming-soon">
+                <h3>🚀 Exciting Projects Coming Soon</h3>
+                <p>Machine learning models, predictive analytics, and advanced statistical modeling projects in progress...</p>
+            </div>
+        </section>
+
+        <!-- NLP/AI Work Section -->
+        <section class="content-section" id="nlp-ai">
+            <h2 class="section-title">
+                <span class="emoji">🤖</span>
+                <span class="text">NLP/AI Work</span>
+            </h2>
+            <div class="coming-soon">
+                <h3>🚀 Exciting Projects Coming Soon</h3>
+                <p>AI agents, LLM applications, and intelligent automation systems under development...</p>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section class="content-section" id="blog">
+            <h2 class="section-title">
+                <span class="emoji">✨</span>
+                <span class="text">Blog</span>
+            </h2>
+            <div class="coming-soon">
+                <h3>🚀 Exciting Content Coming Soon</h3>
+                <p>Technical insights, career journey stories, and data science tutorials coming very soon...</p>
+            </div>
+        </section>
+    </div>
 
     <script>
         // Navbar scroll effect
