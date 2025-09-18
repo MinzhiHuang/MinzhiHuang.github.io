@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Minzhi Huang</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f0f8ff 40%, #f5fbff 70%, #e8f5e8 100%);
+            min-height: 100vh;
+        }
+
+        /* Navigation - 与主页保持一致 */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: none; /* 隐藏MH logo */
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #0984e3;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #0984e3;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* 当前页面标识 */
+        .nav-links a.active {
+            color: #0984e3;
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Hero Section - 使用你的照片作为背景 */
+        .hero {
+            height: 60vh;
+            background: 
+                linear-gradient(135deg, rgba(116, 185, 255, 0.8) 0%, rgba(9, 132, 227, 0.8) 50%, rgba(0, 184, 148, 0.8) 100%),
+                url('./images/about-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="600" cy="700" r="120" fill="url(%23a)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255,255,255,0.5); }
+            to { text-shadow: 0 0 30px rgba(255,255,255,0.8); }
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 60px 0;
+        }
+
+        .content-section {
+            padding: 0 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #74b9ff, #0984e3);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 25px rgba(116, 185, 255, 0.3);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(116, 185, 255, 0.4);
+        }
+
+        /* About Cards */
+        .intro-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(116, 185, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .intro-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .greeting {
+            font-size: 2rem;
+            color: #0984e3;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .welcome {
+            font-size: 1.2rem;
+            color: #00b894;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .bio p {
+            font-size: 1.1rem;
+            color: #2d3436;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .bio a {
+            color: #0984e3;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .bio a:hover {
+            color: #74b9ff;
+            text-decoration: underline;
+        }
+
+        .experience-list {
+            margin: 20px 0;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .experience-list li {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 12px 20px;
+            margin-bottom: 10px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .experience-list li:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(116, 185, 255, 0.3);
+        }
+
+        /* Interests Section */
+        .interests-section {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 184, 148, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .interests-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .interests-title {
+            font-size: 1.5rem;
+            color: #00b894;
+            margin-bottom: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .interests-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .interest-tag {
+            background: linear-gradient(135deg, #00b894, #00a085);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .interest-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 184, 148, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                padding: 15px 20px;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .content-section {
+                padding: 0 20px;
+            }
+            
+            .photo-section {
+                flex-direction: column;
+                gap: 30px;
+                align-items: center;
+            }
+
+            .profile-photos {
+                flex-direction: row;
+                gap: 15px;
+                justify-content: center;
+            }
+
+            .photo-card {
+                width: 150px;
+                height: 180px;
+            }
+            
+            .intro-card, .interests-section {
+                padding: 25px 20px;
+            }
+
+            .greeting {
+                font-size: 1.6rem;
+            }
+
+            .welcome {
+                font-size: 1.1rem;
+            }
+
+            .bio p {
+                font-size: 1rem;
+            }
+
+            .experience-list li {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+
+            .interests-grid {
+                gap: 10px;
+            }
+
+            .interest-tag {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="https://minzhihuang.github.io/">HOME</a></li>
+                <li><a href="about.html" class="active">ABOUT</a></li>
+                <li><a href="https://minzhihuang.github.io/#projects">PROJECTS</a></li>
+                <li><a href="https://minzhihuang.github.io/#blog">BLOG</a></li>
+                <li><a href="https://www.linkedin.com/in/minzhih/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>About Me</h1>
+            <div class="subtitle">Get to know Minzhi (Chloe)</div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <section class="content-section">
+            <a href="https://minzhihuang.github.io/" class="back-btn">
+                ← Back to Home
+            </a>
+            
+            <div class="intro-card">
+                <h2 class="greeting">Hi, I am Minzhi (Chloe)! 🍀</h2>
+                
+                <div class="bio">
+                    <p>I am a graduate from <a href="https://masterdatascience.ubc.ca/programs/computational-linguistics" target="_blank" rel="noopener noreferrer"><strong>UBC Master of Data Science in Computational Linguistics</strong></a>, with an undergraduate degree in <strong>Statistics from SFU</strong>.</p>
+                    
+                    <p>After graduation, I joined <strong>Deepcoin as an AI Engineer</strong>, where I work on cutting edge AI solutions for cryptocurrency trading platforms. During my time at SFU, I gained valuable experience through three impactful internships:</p>
+                    
+                    <ul class="experience-list">
+                        <li><strong>Data Management & Analyst</strong> at Center for Heart Lung Innovation</li>
+                        <li><strong>Research Analyst</strong> at Surrey Schools</li>
+                        <li><strong>Research Assistant</strong> at Simon Fraser University</li>
+                    </ul>
+                    
+                    <p>Each contributing to my expertise in data science, statistical analysis, and AI applications.</p>
+                </div>
+            </div>
+            
+            <div class="interests-section">
+                <h3 class="interests-title">
+                    <span>🌟</span>
+                    Personal Interests
+                </h3>
+                <div class="interests-grid">
+                    <div class="interest-tag">🥾 Hiking</div>
+                    <div class="interest-tag">⛷️ Skiing</div>
+                    <div class="interest-tag">🏃‍♀️ Jogging</div>
+                    <div class="interest-tag">📸 Photography</div>
+                    <div class="interest-tag">✈️ Travel</div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
