@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Minzhi Huang</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f0f8ff 40%, #f5fbff 70%, #e8f5e8 100%);
+            min-height: 100vh;
+        }
+
+        /* Navigation - 与主页保持一致 */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #0984e3;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #0984e3;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: #0984e3;
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 50vh;
+            background: linear-gradient(135deg, rgba(116, 185, 255, 0.9) 0%, rgba(9, 132, 227, 0.9) 50%, rgba(0, 184, 148, 0.9) 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="600" cy="700" r="120" fill="url(%23a)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255,255,255,0.5); }
+            to { text-shadow: 0 0 30px rgba(255,255,255,0.8); }
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 60px 0;
+        }
+
+        .content-section {
+            padding: 0 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #74b9ff, #0984e3);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 25px rgba(116, 185, 255, 0.3);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(116, 185, 255, 0.4);
+        }
+
+        /* Search Bar */
+        .search-section {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(116, 185, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .search-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .search-bar {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: 2px solid rgba(116, 185, 255, 0.3);
+            border-radius: 50px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: #0984e3;
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 0 20px rgba(116, 185, 255, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #0984e3;
+            font-size: 1.2rem;
+        }
+
+        /* Categories */
+        .categories-section {
+            margin-bottom: 40px;
+        }
+
+        .categories-title {
+            font-size: 1.3rem;
+            color: #2d3436;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .categories-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .category-tag {
+            background: linear-gradient(135deg, #00b894, #00a085);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .category-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 184, 148, 0.3);
+        }
+
+        .category-tag.active {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            box-shadow: 0 5px 15px rgba(116, 185, 255, 0.3);
+        }
+
+        /* Blog Posts Grid */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .blog-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(116, 185, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .blog-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #74b9ff, #0984e3, #00b894);
+            transition: all 0.3s ease;
+        }
+
+        .blog-card:hover::before {
+            height: 8px;
+        }
+
+        .blog-header {
+            height: 200px;
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .blog-content {
+            padding: 25px;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #636e72;
+        }
+
+        .blog-date {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .blog-category {
+            background: linear-gradient(135deg, #00b894, #00a085);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .blog-title {
+            font-size: 1.3rem;
+            color: #2d3436;
+            margin-bottom: 12px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .blog-excerpt {
+            color: #636e72;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .blog-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #0984e3;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .blog-link:hover {
+            color: #74b9ff;
+            transform: translateX(5px);
+        }
+
+        /* Coming Soon Card */
+        .coming-soon-card {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, rgba(116, 185, 255, 0.1), rgba(0, 184, 148, 0.1));
+            border: 2px dashed rgba(116, 185, 255, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 40px;
+            text-align: center;
+            min-height: 300px;
+        }
+
+        .coming-soon-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .coming-soon-title {
+            font-size: 2rem;
+            color: #0984e3;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .coming-soon-text {
+            color: #636e72;
+            font-size: 1.1rem;
+            max-width: 500px;
+            line-height: 1.6;
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 184, 148, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .newsletter-title {
+            font-size: 1.8rem;
+            color: #00b894;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .newsletter-description {
+            color: #636e72;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 15px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 20px;
+            border: 2px solid rgba(0, 184, 148, 0.3);
+            border-radius: 50px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-input:focus {
+            border-color: #00b894;
+            box-shadow: 0 0 15px rgba(0, 184, 148, 0.2);
+        }
+
+        .newsletter-btn {
+            padding: 12px 25px;
+            background: linear-gradient(45deg, #00b894, #00a085);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 184, 148, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                padding: 15px 20px;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .content-section {
+                padding: 0 20px;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .blog-card {
+                margin-bottom: 10px;
+            }
+
+            .blog-content {
+                padding: 20px;
+            }
+
+            .newsletter-section {
+                padding: 30px 20px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                max-width: 300px;
+            }
+
+            .newsletter-title {
+                font-size: 1.5rem;
+            }
+
+            .search-section {
+                padding: 25px 20px;
+            }
+
+            .categories-grid {
+                gap: 10px;
+            }
+
+            .category-tag {
+                font-size: 0.8rem;
+                padding: 8px 16px;
+            }
+
+            .coming-soon-card {
+                padding: 40px 20px;
+                min-height: 250px;
+            }
+
+            .coming-soon-icon {
+                font-size: 3rem;
+            }
+
+            .coming-soon-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="https://minzhihuang.github.io/">HOME</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="projects.html">PROJECTS</a></li>
+                <li><a href="blog.html" class="active">BLOG</a></li>
+                <li><a href="https://www.linkedin.com/in/minzhih/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>My Blog</h1>
+            <div class="subtitle">Insights & Learning Journey</div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <section class="content-section">
+            <a href="https://minzhihuang.github.io/" class="back-btn">
+                ← Back to Home
+            </a>
+            
+            <!-- Search Section -->
+            <div class="search-section">
+                <div class="search-bar">
+                    <input type="text" class="search-input" placeholder="Search articles...">
+                    <span class="search-icon">🔍</span>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="categories-section">
+                <h2 class="categories-title">Browse by Category</h2>
+                <div class="categories-grid">
+                    <div class="category-tag active">All Posts</div>
+                    <div class="category-tag">Data Science</div>
+                    <div class="category-tag">Machine Learning</div>
+                    <div class="category-tag">NLP</div>
+                    <div class="category-tag">Career</div>
+                    <div class="category-tag">Tutorials</div>
+                    <div class="category-tag">Research</div>
+                </div>
+            </div>
+            
+            <!-- Blog Posts Grid -->
+            <div class="blog-grid">
+                <!-- Coming Soon Posts -->
+                <div class="blog-card coming-soon-card">
+                    <div class="coming-soon-icon">✍️</div>
+                    <h3 class="coming-soon-title">More Articles Coming Soon</h3>
+                    <p class="coming-soon-text">
+                        I'm working on several exciting articles about AI, data science, and my learning journey. Stay tuned for more insights and tutorials!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Newsletter Section -->
+            <div class="newsletter-section">
+                <h2 class="newsletter-title">Stay Updated! 📬</h2>
+                <p class="newsletter-description">
+                    Subscribe to get notified when I publish new articles about AI, data science, and technology.
+                </p>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Enter your email">
+                    <button type="submit" class="newsletter-btn">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Category filtering functionality
+        const categoryTags = document.querySelectorAll('.category-tag');
+        // Since we only have coming soon card for now, we'll prepare for future content
+        
+        categoryTags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                // Remove active class from all tags
+                categoryTags.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tag
+                tag.classList.add('active');
+                
+                // For now, just show coming soon message
+                console.log(`Selected category: ${tag.textContent}`);
+            });
+        });
+
+        // Search functionality - prepared for future blog posts
+        const searchInput = document.querySelector('.search-input');
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            console.log(`Searching for: ${searchTerm}`);
+            // Will implement actual search when blog posts are added
+        });
+
+        // Newsletter form submission
+        const newsletterForm = document.querySelector('.newsletter-form');
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = e.target.querySelector('.newsletter-input').value;
+            if (email) {
+                alert('Thank you for subscribing! 🎉');
+                e.target.querySelector('.newsletter-input').value = '';
+            }
+        });
+    </script>
+</body>
+</html>
