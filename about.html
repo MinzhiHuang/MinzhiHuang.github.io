@@ -18,7 +18,7 @@
             min-height: 100vh;
         }
 
-        /* Navigation - 与主页保持一致 */
+        /* Navigation - consistent with homepage */
         .nav {
             position: fixed;
             top: 0;
@@ -39,7 +39,7 @@
         }
 
         .logo {
-            display: none; /* 隐藏MH logo */
+            display: none; /* Hide MH logo */
         }
 
         .nav-links {
@@ -76,7 +76,7 @@
             width: 100%;
         }
 
-        /* 当前页面标识 */
+        /* Current page identifier */
         .nav-links a.active {
             color: #0984e3;
         }
@@ -85,7 +85,7 @@
             width: 100%;
         }
 
-        /* Hero Section - 使用你的照片作为背景 */
+        /* Hero Section - using your photo as background */
         .hero {
             height: 60vh;
             background: 
@@ -227,16 +227,20 @@
             margin-bottom: 20px;
         }
 
+        /* Custom link styles - keep link text inherit parent color */
         .bio a {
-            color: #0984e3;
+            color: inherit;
             text-decoration: none;
+            border-bottom: 2px solid #0984e3;
             font-weight: 600;
             transition: all 0.3s ease;
         }
 
         .bio a:hover {
-            color: #74b9ff;
-            text-decoration: underline;
+            background-color: #0984e3;
+            color: white;
+            padding: 2px 4px;
+            border-radius: 3px;
         }
 
         .experience-list {
@@ -259,6 +263,21 @@
         .experience-list li:hover {
             transform: translateX(10px);
             box-shadow: 0 5px 15px rgba(116, 185, 255, 0.3);
+        }
+
+        /* Custom link styles for experience list */
+        .experience-list a {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255,255,255,0.7);
+            transition: all 0.3s ease;
+        }
+
+        .experience-list a:hover {
+            border-bottom: 2px solid white;
+            background-color: rgba(255,255,255,0.1);
+            padding: 1px 3px;
+            border-radius: 2px;
         }
 
         /* Interests Section */
@@ -380,7 +399,7 @@
         <div class="nav-container">
             <ul class="nav-links">
                 <li><a href="./index.html">HOME</a></li>
-                <li><a href="./about.html">ABOUT</a></li>
+                <li><a href="./about.html" class="active">ABOUT</a></li>
                 <li><a href="./project.html">PROJECTS</a></li>
                 <li><a href="./blog.html">BLOG</a></li>
                 <li><a href="https://www.linkedin.com/in/minzhih/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
@@ -412,10 +431,10 @@
                     <p>After graduation, I joined <strong>Deepcoin as an AI Engineer</strong>, where I work on cutting edge AI solutions for cryptocurrency trading platforms. During my time at SFU, I gained valuable experience through three impactful internships:</p>
                     
                     <ul class="experience-list">
-    <li><strong>Data Management & Analyst</strong> at <a href="https://www.hli.ubc.ca/" target="_blank" rel="noopener noreferrer">Center for Heart Lung Innovation</a></li>
-    <li><strong>Research Analyst</strong> at <a href="https://www.surreyschools.ca/" target="_blank" rel="noopener noreferrer">Surrey Schools</a></li>
-    <li><strong>Research Assistant</strong> at <a href="https://www.sfu.ca/stat-actsci.html" target="_blank" rel="noopener noreferrer">Simon Fraser University</a></li>
-</ul>
+                        <li><strong>Data Management & Analyst</strong> at <a href="https://www.hli.ubc.ca/" target="_blank" rel="noopener noreferrer">Center for Heart Lung Innovation</a></li>
+                        <li><strong>Research Analyst</strong> at <a href="https://www.surreyschools.ca/" target="_blank" rel="noopener noreferrer">Surrey Schools</a></li>
+                        <li><strong>Research Assistant</strong> at <a href="https://www.sfu.ca/stat-actsci.html" target="_blank" rel="noopener noreferrer">Simon Fraser University</a></li>
+                    </ul>
                     
                     <p>Each contributing to my expertise in data science, statistical analysis, and AI applications.</p>
                 </div>
@@ -431,7 +450,7 @@
                     <div class="interest-tag">⛷️ Skiing</div>
                     <div class="interest-tag">🏃‍♀️ Jogging</div>
                     <div class="interest-tag">📸 Photography</div>
-                    <div class="interest-tag">✈️ Travel</div>
+                    <div class="interest-tag">🌍 Travel</div>
                 </div>
             </div>
         </section>
