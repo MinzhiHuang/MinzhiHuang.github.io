@@ -328,7 +328,6 @@
             transform: translateY(-5px);
         }
 
-        /* Responsive Design */
         /* Content Sections */
         .content-section {
             padding: 80px 50px;
@@ -357,17 +356,154 @@
             background-clip: text;
         }
 
-        /* Subsection styling */
-        .subsection-title {
-            font-size: 1.8rem;
-            color: #0984e3;
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 600;
+        /* Project Card Styling */
+        .project-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(116, 185, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
         }
 
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #74b9ff, #0984e3, #00b894);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover::before {
+            height: 8px;
+        }
+
+        .project-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .project-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #74b9ff, #0984e3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .project-info h3 {
+            font-size: 1.4rem;
+            color: #2d3436;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .project-type {
+            color: #636e72;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .project-description {
+            color: #2d3436;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .tech-stack {
+            margin-bottom: 25px;
+        }
+
+        .tech-stack h4 {
+            color: #00b894;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-tag {
+            background: linear-gradient(135deg, #00b894, #00a085);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: linear-gradient(45deg, #74b9ff, #0984e3);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(116, 185, 255, 0.4);
+        }
+
+        .project-link.secondary {
+            background: linear-gradient(45deg, #636e72, #2d3436);
+        }
+
+        .project-link.secondary:hover {
+            box-shadow: 0 5px 15px rgba(99, 110, 114, 0.4);
+        }
+
+        .featured-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #fdcb6e, #e17055);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Coming Soon Styling */
         .coming-soon {
             background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
@@ -408,12 +544,6 @@
             padding: 40px 0;
         }
 
-        /* Remove alternating colors */
-        .section-alt, .section-blue, .section-green {
-            background: transparent;
-            color: inherit;
-        }
-
         @media (max-width: 768px) {
             .content-section {
                 padding: 60px 20px;
@@ -426,7 +556,7 @@
             .coming-soon {
                 padding: 40px 20px;
             }
-        }
+
             .nav {
                 padding: 15px 20px;
             }
@@ -471,6 +601,23 @@
                 width: 150px;
                 height: 150px;
                 font-size: 2.5rem;
+            }
+
+            .project-card {
+                padding: 25px 20px;
+            }
+
+            .project-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .project-info h3 {
+                font-size: 1.2rem;
+            }
+
+            .project-links {
+                flex-direction: column;
             }
         }
 
@@ -550,7 +697,7 @@
                 </a>
             </div>
             
-            <!-- Skills Preview moved here -->
+            <!-- Skills Preview -->
             <div class="skills-preview">
                 <div class="skill-badge">Python</div>
                 <div class="skill-badge">LangChain</div>
@@ -559,8 +706,6 @@
                 <div class="skill-badge">SQL</div>
             </div>
         </div>
-
-        <!-- Skills Preview moved to hero content above -->
 
         <!-- Scroll Indicator -->
         <div class="scroll-indicator">
@@ -600,9 +745,46 @@
                 <span class="emoji">🤖</span>
                 <span class="text">NLP/AI Work</span>
             </h2>
+            
+            <!-- BioLaySumm Project -->
+            <div class="project-card">
+                <div class="featured-badge">⭐ Featured Project</div>
+                <div class="project-header">
+                    <div class="project-icon">📝</div>
+                    <div class="project-info">
+                        <h3>BioLaySumm: Biomedical Lay Summarization</h3>
+                        <div class="project-type">NLP • Large Language Models • Hackathon</div>
+                    </div>
+                </div>
+                <div class="project-description">
+                    🏆 Participated in BioLaySumm 2023 Shared Task @ ACL 2023 BioNLP Workshop. Benchmarked and optimized multiple large language models (BioMistral-7B, GPT-3.5, Mixtral-8x7B) to automatically generate lay summaries of complex biomedical research articles. The goal is to make scientific research accessible to non-expert audiences by transforming technical content into readable, comprehensible summaries with background information and simplified terminology.
+                </div>
+                <div class="tech-stack">
+                    <h4>Tech Stack</h4>
+                    <div class="tech-tags">
+                        <div class="tech-tag">Python</div>
+                        <div class="tech-tag">Exploratory Data Analysis</div>
+                        <div class="tech-tag">Large Language Models</div>
+                        <div class="tech-tag">Transformers</div>
+                        <div class="tech-tag">NLP</div>
+                        <div class="tech-tag">Few-shot Learning</div>
+                        <div class="tech-tag">Biomedical AI</div>
+                    </div>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/MinzhiHuang/BioLaySumm" class="project-link">
+                        💻 GitHub Repository
+                    </a>
+                    <a href="https://biolaysumm.org/2023/" class="project-link secondary">
+                        🌐 BioLaySumm Task
+                    </a>
+                </div>
+            </div>
+
+            <!-- Coming Soon for more projects -->
             <div class="coming-soon">
-                <h3>🚀 Exciting Projects Coming Soon</h3>
-                <p>AI agents, LLM applications, and intelligent automation systems under development...</p>
+                <h3>🚀 More AI Projects Coming Soon</h3>
+                <p>Additional AI agents, LLM applications, and intelligent automation systems under development...</p>
             </div>
         </section>
 
@@ -630,14 +812,13 @@
             }
         });
 
-        // Smooth scrolling only for internal page anchors, exclude all file links
+        // Smooth scrolling only for internal page anchors
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             const href = anchor.getAttribute('href');
             
-            // Only apply smooth scrolling to genuine internal anchors like #home, #data-analyst etc.
-            // Skip any navigation links that should go to external files
+            // Skip navigation links that should go to external files
             if (anchor.closest('.nav-links')) {
-                return; // Skip all navigation links entirely
+                return;
             }
             
             anchor.addEventListener('click', function (e) {
@@ -652,7 +833,7 @@
             });
         });
 
-        // Add some interactive effects
+        // Add interactive effects
         document.querySelectorAll('.btn').forEach(button => {
             button.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-3px) scale(1.05)';
