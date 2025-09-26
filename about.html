@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,7 +28,7 @@
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
         }
 
         .nav-container {
@@ -39,7 +40,8 @@
         }
 
         .logo {
-            display: none; /* Hide MH logo */
+            display: none;
+            /* Hide MH logo */
         }
 
         .nav-links {
@@ -88,7 +90,7 @@
         /* Hero Section - using your photo as background */
         .hero {
             height: 60vh;
-            background: 
+            background:
                 linear-gradient(135deg, rgba(116, 185, 255, 0.8) 0%, rgba(9, 132, 227, 0.8) 50%, rgba(0, 184, 148, 0.8) 100%),
                 url('./images/about-bg.jpg');
             background-size: cover;
@@ -114,8 +116,15 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
         }
 
         .hero-content {
@@ -129,6 +138,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -147,8 +157,13 @@
         }
 
         @keyframes glow {
-            from { text-shadow: 0 0 20px rgba(255,255,255,0.5); }
-            to { text-shadow: 0 0 30px rgba(255,255,255,0.8); }
+            from {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            }
+
+            to {
+                text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+            }
         }
 
         .hero .subtitle {
@@ -269,13 +284,13 @@
         .experience-list a {
             color: inherit;
             text-decoration: none;
-            border-bottom: 1px solid rgba(255,255,255,0.7);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.7);
             transition: all 0.3s ease;
         }
 
         .experience-list a:hover {
             border-bottom: 2px solid white;
-            background-color: rgba(255,255,255,0.1);
+            background-color: rgba(255, 255, 255, 0.1);
             padding: 1px 3px;
             border-radius: 2px;
         }
@@ -331,19 +346,19 @@
             .nav {
                 padding: 15px 20px;
             }
-            
+
             .nav-links {
                 gap: 20px;
             }
-            
+
             .hero h1 {
                 font-size: 2.2rem;
             }
-            
+
             .content-section {
                 padding: 0 20px;
             }
-            
+
             .photo-section {
                 flex-direction: column;
                 gap: 30px;
@@ -360,8 +375,9 @@
                 width: 150px;
                 height: 180px;
             }
-            
-            .intro-card, .interests-section {
+
+            .intro-card,
+            .interests-section {
                 padding: 25px 20px;
             }
 
@@ -393,6 +409,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="nav">
@@ -402,7 +419,8 @@
                 <li><a href="./about.html" class="active">ABOUT</a></li>
                 <li><a href="./project.html">PROJECTS</a></li>
                 <li><a href="./blog.html">BLOG</a></li>
-                <li><a href="https://www.linkedin.com/in/minzhih/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                <li><a href="https://www.linkedin.com/in/minzhih/" target="_blank"
+                        rel="noopener noreferrer">LinkedIn</a></li>
             </ul>
         </div>
     </nav>
@@ -421,25 +439,34 @@
             <a href="https://minzhihuang.github.io/" class="back-btn">
                 ← Back to Home
             </a>
-            
+
             <div class="intro-card">
                 <h2 class="greeting">Hi, I am Minzhi (Chloe)! 🍀</h2>
-                
+
                 <div class="bio">
-                    <p>I am a graduate from <a href="https://masterdatascience.ubc.ca/programs/computational-linguistics" target="_blank" rel="noopener noreferrer"><strong>UBC Master of Data Science in Computational Linguistics</strong></a>, with an undergraduate degree in <strong>Statistics from SFU</strong>.</p>
-                    
-                    <p>After graduation, I joined <strong>Deepcoin as an AI Engineer</strong>, where I work on cutting edge AI solutions for cryptocurrency trading platforms. During my time at SFU, I gained valuable experience through three impactful internships:</p>
-                    
+                    <p>I am a graduate from <a
+                            href="https://masterdatascience.ubc.ca/programs/computational-linguistics" target="_blank"
+                            rel="noopener noreferrer"><strong>UBC Master of Data Science in Computational
+                                Linguistics</strong></a>, with an undergraduate degree in <strong>Statistics from
+                            SFU</strong>.</p>
+
+                    <p>After graduation, I joined <strong>Deepcoin as an AI Engineer</strong>, where I work on cutting
+                        edge AI solutions for cryptocurrency trading platforms. During my time at SFU, I gained valuable
+                        experience through three impactful internships:</p>
+
                     <ul class="experience-list">
-                        <li><strong>Data Management & Analyst</strong> at <a href="https://www.hli.ubc.ca/" target="_blank" rel="noopener noreferrer">Center for Heart Lung Innovation</a></li>
-                        <li><strong>Research Analyst</strong> at <a href="https://www.surreyschools.ca/" target="_blank" rel="noopener noreferrer">Surrey Schools</a></li>
-                        <li><strong>Research Assistant</strong> at <a href="https://www.sfu.ca/stat-actsci.html" target="_blank" rel="noopener noreferrer">Simon Fraser University</a></li>
+                        <li><strong>Data Management & Analyst</strong> at <a href="https://www.hli.ubc.ca/"
+                                target="_blank" rel="noopener noreferrer">Center for Heart Lung Innovation</a></li>
+                        <li><strong>Research Analyst</strong> at <a href="https://www.surreyschools.ca/" target="_blank"
+                                rel="noopener noreferrer">Surrey Schools</a></li>
+                        <li><strong>Research Assistant</strong> at <a href="https://www.sfu.ca/stat-actsci.html"
+                                target="_blank" rel="noopener noreferrer">Simon Fraser University</a></li>
                     </ul>
-                    
+
                     <p>Each contributing to my expertise in data science, statistical analysis, and AI applications.</p>
                 </div>
             </div>
-            
+
             <div class="interests-section">
                 <h3 class="interests-title">
                     <span>🌟</span>
@@ -456,4 +483,5 @@
         </section>
     </div>
 </body>
+
 </html>
