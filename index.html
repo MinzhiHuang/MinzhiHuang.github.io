@@ -18,11 +18,9 @@
             overflow-x: hidden;
         }
 
-        /* Hero Section with Personal Photo */
+        /* Hero Section - Split Layout */
         .hero {
-            height: 100vh;
-            min-height: 800px;
-            /* 确保有足够的空间 */
+            min-height: 100vh;
             background:
                 radial-gradient(circle at 20% 80%, rgba(116, 185, 255, 0.2) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(0, 184, 148, 0.2) 0%, transparent 50%),
@@ -34,8 +32,7 @@
             justify-content: center;
             color: white;
             overflow: hidden;
-            padding: 120px 20px 80px;
-            /* 上下都留出足够空间 */
+            padding: 120px 50px 80px;
         }
 
         /* 数据科学主题动态背景 */
@@ -46,12 +43,11 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="node1" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.8"/><stop offset="40%" stop-color="%23ffffff" stop-opacity="0.3"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient><radialGradient id="node2" cx="50%" cy="50%"><stop offset="0%" stop-color="%2374b9ff" stop-opacity="0.6"/><stop offset="40%" stop-color="%2374b9ff" stop-opacity="0.2"/><stop offset="100%" stop-color="%2374b9ff" stop-opacity="0"/></radialGradient><radialGradient id="node3" cx="50%" cy="50%"><stop offset="0%" stop-color="%2300b894" stop-opacity="0.6"/><stop offset="40%" stop-color="%2300b894" stop-opacity="0.2"/><stop offset="100%" stop-color="%2300b894" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="150" r="4" fill="%23ffffff" opacity="0.9"/><circle cx="350" cy="200" r="6" fill="%2374b9ff" opacity="0.8"/><circle cx="500" cy="180" r="5" fill="%2300b894" opacity="0.7"/><circle cx="650" cy="220" r="4" fill="%23ffffff" opacity="0.6"/><circle cx="800" cy="160" r="7" fill="%2374b9ff" opacity="0.9"/><circle cx="150" cy="350" r="5" fill="%2300b894" opacity="0.8"/><circle cx="300" cy="400" r="6" fill="%23ffffff" opacity="0.7"/><circle cx="450" cy="380" r="4" fill="%2374b9ff" opacity="0.6"/><circle cx="600" cy="420" r="8" fill="%2300b894" opacity="0.9"/><circle cx="750" cy="360" r="5" fill="%23ffffff" opacity="0.8"/><circle cx="250" cy="600" r="6" fill="%2374b9ff" opacity="0.7"/><circle cx="400" cy="650" r="4" fill="%2300b894" opacity="0.8"/><circle cx="550" cy="620" r="7" fill="%23ffffff" opacity="0.6"/><circle cx="700" cy="680" r="5" fill="%2374b9ff" opacity="0.9"/><circle cx="850" cy="640" r="6" fill="%2300b894" opacity="0.7"/><line x1="200" y1="150" x2="350" y2="200" stroke="%23ffffff" stroke-width="1" opacity="0.3"/><line x1="350" y1="200" x2="500" y2="180" stroke="%2374b9ff" stroke-width="1" opacity="0.25"/><line x1="500" y1="180" x2="650" y2="220" stroke="%2300b894" stroke-width="1" opacity="0.2"/><line x1="650" y1="220" x2="800" y2="160" stroke="%23ffffff" stroke-width="1" opacity="0.3"/><line x1="150" y1="350" x2="300" y2="400" stroke="%2300b894" stroke-width="1" opacity="0.25"/><line x1="300" y1="400" x2="450" y2="380" stroke="%23ffffff" stroke-width="1" opacity="0.2"/><line x1="450" y1="380" x2="600" y2="420" stroke="%2374b9ff" stroke-width="1" opacity="0.3"/><line x1="600" y1="420" x2="750" y2="360" stroke="%2300b894" stroke-width="1" opacity="0.25"/><line x1="250" y1="600" x2="400" y2="650" stroke="%2374b9ff" stroke-width="1" opacity="0.2"/><line x1="400" y1="650" x2="550" y2="620" stroke="%23ffffff" stroke-width="1" opacity="0.3"/><line x1="550" y1="620" x2="700" y2="680" stroke="%2300b894" stroke-width="1" opacity="0.25"/><line x1="700" y1="680" x2="850" y2="640" stroke="%2374b9ff" stroke-width="1" opacity="0.2"/><circle cx="200" cy="150" r="15" fill="url(%23node1)"/><circle cx="600" cy="420" r="20" fill="url(%23node2)"/><circle cx="550" cy="620" r="18" fill="url(%23node3)"/></svg>');
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="200" cy="150" r="4" fill="%23ffffff" opacity="0.9"/><circle cx="350" cy="200" r="6" fill="%2374b9ff" opacity="0.8"/><circle cx="500" cy="180" r="5" fill="%2300b894" opacity="0.7"/><line x1="200" y1="150" x2="350" y2="200" stroke="%23ffffff" stroke-width="1" opacity="0.3"/><line x1="350" y1="200" x2="500" y2="180" stroke="%2374b9ff" stroke-width="1" opacity="0.25"/></svg>');
             animation: dataFlow 25s linear infinite;
             z-index: 0;
         }
 
-        /* 数据图表元素 */
         .hero::after {
             content: '';
             position: absolute;
@@ -59,12 +55,11 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><linearGradient id="chartGrad" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="%2374b9ff" stop-opacity="0.1"/><stop offset="50%" stop-color="%2300b894" stop-opacity="0.15"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0.05"/></linearGradient></defs><path d="M 100 800 Q 200 700 300 750 T 500 650 T 700 600 T 900 550" stroke="%2374b9ff" stroke-width="2" fill="none" opacity="0.6"/><path d="M 100 750 Q 250 650 400 700 T 600 600 T 800 550 T 900 500" stroke="%2300b894" stroke-width="2" fill="none" opacity="0.5"/><rect x="120" y="850" width="15" height="80" fill="%2374b9ff" opacity="0.4"/><rect x="180" y="820" width="15" height="110" fill="%2300b894" opacity="0.5"/><rect x="240" y="840" width="15" height="90" fill="%23ffffff" opacity="0.3"/><rect x="300" y="800" width="15" height="130" fill="%2374b9ff" opacity="0.4"/><rect x="360" y="830" width="15" height="100" fill="%2300b894" opacity="0.5"/><rect x="650" y="780" width="15" height="150" fill="%2374b9ff" opacity="0.4"/><rect x="710" y="810" width="15" height="120" fill="%2300b894" opacity="0.5"/><rect x="770" y="790" width="15" height="140" fill="%23ffffff" opacity="0.3"/></svg>');
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><path d="M 100 800 Q 200 700 300 750 T 500 650" stroke="%2374b9ff" stroke-width="2" fill="none" opacity="0.6"/><rect x="120" y="850" width="15" height="80" fill="%2374b9ff" opacity="0.4"/></svg>');
             animation: chartPulse 20s ease-in-out infinite;
             z-index: 0;
         }
 
-        /* 数据流动粒子效果 */
         .data-particles {
             position: absolute;
             top: 0;
@@ -87,73 +82,29 @@
             box-shadow:
                 0 0 10px rgba(116, 185, 255, 0.8),
                 200px 50px 0 -2px rgba(0, 184, 148, 0.6),
-                400px 100px 0 -1px rgba(255, 255, 255, 0.7),
-                600px 150px 0 -3px rgba(116, 185, 255, 0.5),
-                800px 200px 0 -1px rgba(0, 184, 148, 0.8);
+                400px 100px 0 -1px rgba(255, 255, 255, 0.7);
             animation: particleFlow 30s linear infinite;
         }
 
-        .data-particles::after {
-            content: '';
-            position: absolute;
-            bottom: 30%;
-            right: 15%;
-            width: 6px;
-            height: 6px;
-            background: #00b894;
-            border-radius: 50%;
-            box-shadow:
-                0 0 8px rgba(0, 184, 148, 0.9),
-                -150px -40px 0 -1px rgba(116, 185, 255, 0.6),
-                -300px -80px 0 -2px rgba(255, 255, 255, 0.5),
-                -450px -120px 0 -1px rgba(0, 184, 148, 0.7),
-                -600px -160px 0 -3px rgba(116, 185, 255, 0.4);
-            animation: particleFlow2 25s linear infinite reverse;
-        }
-
         @keyframes dataFlow {
-            0% {
+            0%, 100% {
                 transform: translateX(0px) translateY(0px);
                 opacity: 0.8;
             }
-
-            25% {
-                transform: translateX(20px) translateY(-10px);
-                opacity: 1;
-            }
-
             50% {
                 transform: translateX(0px) translateY(-20px);
                 opacity: 0.9;
             }
-
-            75% {
-                transform: translateX(-15px) translateY(-10px);
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateX(0px) translateY(0px);
-                opacity: 0.8;
-            }
         }
 
         @keyframes chartPulse {
-
-            0%,
-            100% {
+            0%, 100% {
                 transform: scale(1) translateY(0px);
                 opacity: 0.7;
             }
-
-            33% {
+            50% {
                 transform: scale(1.02) translateY(-5px);
                 opacity: 0.9;
-            }
-
-            66% {
-                transform: scale(0.98) translateY(-2px);
-                opacity: 0.8;
             }
         }
 
@@ -162,39 +113,112 @@
                 transform: translateX(-50px) translateY(0px);
                 opacity: 0;
             }
-
             10% {
                 opacity: 1;
             }
-
             90% {
                 opacity: 1;
             }
-
             100% {
                 transform: translateX(100vw) translateY(-100px);
                 opacity: 0;
             }
         }
 
-        @keyframes particleFlow2 {
-            0% {
-                transform: translateX(50px) translateY(0px);
-                opacity: 0;
-            }
+        /* Hero Container - Two Column Layout */
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1400px;
+            width: 100%;
+            align-items: start;
+            z-index: 2;
+        }
 
-            10% {
-                opacity: 1;
-            }
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
 
-            90% {
-                opacity: 1;
-            }
+        .hero-right {
+            padding: 0;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
 
-            100% {
-                transform: translateX(-100vw) translateY(80px);
-                opacity: 0;
-            }
+        /* Scrollbar styling for right panel */
+        .hero-right::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .hero-right::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .hero-right::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+        }
+
+        .hero-right::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Latest Projects Section */
+        .latest-section-title {
+            display: none;
+        }
+
+        .mini-project-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .mini-project-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .mini-project-card h3 {
+            font-size: 1.1rem;
+            color: white;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .mini-project-card p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .mini-project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            opacity: 0.9;
+        }
+
+        .mini-project-link:hover {
+            opacity: 1;
+            gap: 8px;
         }
 
         /* Navigation */
@@ -273,12 +297,11 @@
 
         /* Hero Content */
         .hero-content {
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             z-index: 2;
-            max-width: 800px;
-            padding: 0 20px;
             animation: fadeInUp 1s ease-out;
-            position: relative;
         }
 
         @keyframes fadeInUp {
@@ -286,7 +309,6 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -302,9 +324,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            font-weight: bold;
-            color: white;
             box-shadow:
                 0 20px 40px rgba(0, 0, 0, 0.3),
                 0 0 0 4px rgba(116, 185, 255, 0.3),
@@ -322,51 +341,14 @@
                 0 0 0 8px rgba(116, 185, 255, 0.2);
         }
 
-        .profile-image::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transform: rotate(45deg);
-            animation: shine 3s ease-in-out infinite;
-        }
-
-        @keyframes shine {
-            0% {
-                transform: translateX(-100%) translateY(-100%) rotate(45deg);
-            }
-
-            50% {
-                transform: translateX(100%) translateY(100%) rotate(45deg);
-            }
-
-            100% {
-                transform: translateX(-100%) translateY(-100%) rotate(45deg);
-            }
-        }
-
         .hero h1 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 800;
             margin-bottom: 20px;
             background: linear-gradient(45deg, #fff, #f0f0f0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            }
-
-            to {
-                text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
-            }
         }
 
         .hero .subtitle {
@@ -377,10 +359,10 @@
         }
 
         .hero .description {
-            font-size: 1.1rem;
+            font-size: 1rem;
             opacity: 0.9;
             margin-bottom: 40px;
-            max-width: 600px;
+            max-width: 500px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -388,27 +370,27 @@
         /* Action Buttons */
         .hero-buttons {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             justify-content: center;
             flex-wrap: wrap;
-            max-width: 600px;
+            max-width: 550px;
             margin: 0 auto 30px;
         }
 
         .btn {
-            padding: 12px 20px;
+            padding: 10px 18px;
             border: none;
             border-radius: 50px;
             font-weight: 600;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .btn-primary {
@@ -444,7 +426,7 @@
             left: 100%;
         }
 
-        /* Resume Dropdown Styles */
+        /* Resume Dropdown */
         .resume-dropdown {
             position: relative;
             display: inline-block;
@@ -453,13 +435,12 @@
         .resume-btn {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            position: relative;
+            gap: 6px;
         }
 
         .dropdown-arrow {
             transition: transform 0.3s ease;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
         }
 
         .resume-dropdown.active .dropdown-arrow {
@@ -504,14 +485,6 @@
             margin: 5px;
         }
 
-        .resume-option:first-child {
-            margin-top: 8px;
-        }
-
-        .resume-option:last-child {
-            margin-bottom: 8px;
-        }
-
         .resume-option:hover {
             background: linear-gradient(45deg, #74b9ff, #0984e3);
             color: white;
@@ -520,9 +493,9 @@
 
         /* Skills Preview */
         .skills-preview {
-            margin-bottom: 40px;
+            margin-bottom: 20px;
             display: flex;
-            gap: 15px;
+            gap: 8px;
             justify-content: center;
             flex-wrap: wrap;
             z-index: 2;
@@ -531,10 +504,10 @@
         .skill-badge {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            padding: 10px 20px;
+            padding: 6px 14px;
             border-radius: 25px;
             color: white;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 500;
             border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
@@ -542,7 +515,7 @@
 
         .skill-badge:hover {
             background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-5px);
+            transform: translateY(-3px);
         }
 
         /* Scroll indicator */
@@ -558,19 +531,12 @@
         }
 
         @keyframes bounce {
-
-            0%,
-            20%,
-            50%,
-            80%,
-            100% {
+            0%, 20%, 50%, 80%, 100% {
                 transform: translateX(-50%) translateY(0);
             }
-
             40% {
                 transform: translateX(-50%) translateY(-10px);
             }
-
             60% {
                 transform: translateX(-50%) translateY(-5px);
             }
@@ -604,7 +570,7 @@
             background-clip: text;
         }
 
-        /* Project Card Styling */
+        /* Project Card */
         .project-card {
             background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
@@ -631,11 +597,6 @@
             right: 0;
             height: 4px;
             background: linear-gradient(45deg, #74b9ff, #0984e3, #00b894);
-            transition: all 0.3s ease;
-        }
-
-        .project-card:hover::before {
-            height: 8px;
         }
 
         .project-header {
@@ -687,7 +648,6 @@
             margin-bottom: 10px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .tech-tags {
@@ -734,10 +694,6 @@
             background: linear-gradient(45deg, #636e72, #2d3436);
         }
 
-        .project-link.secondary:hover {
-            box-shadow: 0 5px 15px rgba(99, 110, 114, 0.4);
-        }
-
         .featured-badge {
             display: inline-block;
             background: linear-gradient(45deg, #fdcb6e, #e17055);
@@ -748,10 +704,9 @@
             font-weight: 600;
             margin-bottom: 15px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
-        /* Coming Soon Styling */
+        /* Coming Soon */
         .coming-soon {
             background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
@@ -767,7 +722,6 @@
         .coming-soon:hover {
             transform: translateY(-8px);
             box-shadow: 0 15px 35px rgba(0, 184, 148, 0.25);
-            border-color: rgba(0, 184, 148, 0.5);
         }
 
         .coming-soon h3 {
@@ -785,37 +739,32 @@
             line-height: 1.6;
         }
 
-        /* Single Background Color for Content */
+        /* Background */
         .content-background {
             background: linear-gradient(135deg, #e3f2fd 0%, #f0f8ff 40%, #f5fbff 70%, #e8f5e8 100%);
             min-height: 100vh;
             padding: 40px 0;
         }
 
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .hero-right {
+                max-height: none;
+            }
+        }
+
         @media (max-width: 768px) {
             .hero {
-                min-height: 700px;
-                padding: 100px 15px 60px;
+                padding: 100px 20px 60px;
             }
 
-            .content-section {
-                padding: 60px 20px;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .coming-soon {
-                padding: 40px 20px;
-            }
-
-            .nav {
-                padding: 15px 20px;
-            }
-
-            .nav-links {
-                gap: 20px;
+            .hero-right {
+                padding: 25px;
             }
 
             .hero h1 {
@@ -826,45 +775,44 @@
                 font-size: 1.2rem;
             }
 
-            .hero-buttons {
-                gap: 10px;
-                padding: 0 20px;
-            }
-
-            .btn {
-                flex: 1;
-                min-width: 140px;
-                justify-content: center;
-                font-size: 0.8rem;
-                padding: 10px 15px;
-            }
-
-            .resume-dropdown {
-                flex: 1;
-            }
-
-            .resume-options {
-                min-width: 180px;
-                left: 0;
-                right: 0;
-                margin: 0 auto;
-            }
-
-            .skills-preview {
-                margin-top: 20px;
-                gap: 10px;
-                padding: 0 20px;
-            }
-
-            .skill-badge {
-                font-size: 0.8rem;
-                padding: 8px 15px;
-            }
-
             .profile-image {
                 width: 150px;
                 height: 150px;
-                font-size: 2.5rem;
+            }
+
+            .content-section {
+                padding: 60px 20px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .nav {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                gap: 15px;
+                font-size: 0.85rem;
+            }
+
+            .hero-buttons {
+                gap: 8px;
+            }
+
+            .btn {
+                padding: 8px 14px;
+                font-size: 0.75rem;
+            }
+
+            .skills-preview {
+                gap: 6px;
+            }
+
+            .skill-badge {
+                padding: 5px 10px;
+                font-size: 0.7rem;
             }
 
             .project-card {
@@ -874,14 +822,6 @@
             .project-header {
                 flex-direction: column;
                 gap: 10px;
-            }
-
-            .project-info h3 {
-                font-size: 1.2rem;
-            }
-
-            .project-links {
-                flex-direction: column;
             }
         }
     </style>
@@ -901,63 +841,96 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section - First Page -->
     <section class="hero" id="home">
-        <!-- 数据流动粒子效果 -->
         <div class="data-particles"></div>
 
-        <div class="hero-content">
-            <!-- Profile Image -->
-            <div class="profile-image">
-                <img src="./images/profile.jpg" alt="Minzhi Huang"
-                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
-            </div>
+        <div class="hero-container">
+            <!-- Left Side: Personal Info -->
+            <div class="hero-left">
+                <div class="hero-content">
+                    <div class="profile-image">
+                        <img src="./images/profile.jpg" alt="Minzhi Huang"
+                            style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                    </div>
 
-            <h1>Minzhi Huang</h1>
-            <div class="subtitle">Data Analyst & AI Engineer</div>
-            <p class="description">
-                📊 Transforming complex data into actionable business insights through statistical analysis, interactive
-                dashboards, and intelligent AI solutions that drive measurable impact across organizations
-            </p>
+                    <h1>Minzhi Huang</h1>
+                    <div class="subtitle">Data Analyst & AI Engineer</div>
+                    <p class="description">
+                        Transforming complex data into actionable business insights through statistical analysis,
+                        interactive dashboards, and intelligent AI solutions that drive measurable impact across
+                        organizations
+                    </p>
 
-            <div class="hero-buttons">
-                <a href="#data-analyst" class="btn btn-primary">
-                    📊 Data Analyst Work
-                </a>
-                <a href="#data-scientist" class="btn btn-primary">
-                    🔬 Data Scientist Work
-                </a>
-                <a href="#nlp-ai" class="btn btn-primary">
-                    🤖 NLP/AI Work
-                </a>
-                <div class="resume-dropdown">
-                    <button class="btn btn-secondary resume-btn" onclick="toggleResumeDropdown()">
-                        📄 Download Resume
-                        <span class="dropdown-arrow">▼</span>
-                    </button>
-                    <div class="resume-options" id="resumeOptions">
-                        <a href="./resume/Minzhi_Resume_Data_Analyst.pdf" class="resume-option" download>
-                            Data Analyst Resume
+                    <div class="hero-buttons">
+                        <a href="#data-analyst" class="btn btn-primary">
+                            Data Analyst Work
                         </a>
-                        <a href="./resume/Minzhi_Resume_AI_Engineer.pdf" class="resume-option" download>
-                            AI Engineer Resume
+                        <a href="#data-scientist" class="btn btn-primary">
+                            Data Scientist Work
+                        </a>
+                        <a href="#nlp-ai" class="btn btn-primary">
+                            NLP/AI Work
+                        </a>
+                        <div class="resume-dropdown">
+                            <button class="btn btn-secondary resume-btn" onclick="toggleResumeDropdown()">
+                                Download Resume
+                                <span class="dropdown-arrow">▼</span>
+                            </button>
+                            <div class="resume-options" id="resumeOptions">
+                                <a href="./resume/Minzhi_Resume_Data_Analyst.pdf" class="resume-option" download>
+                                    Data Analyst Resume
+                                </a>
+                                <a href="./resume/Minzhi_Resume_AI_Engineer.pdf" class="resume-option" download>
+                                    AI Engineer Resume
+                                </a>
+                            </div>
+                        </div>
+                        <a href="mailto:huangminzxx@gmail.com" class="btn btn-secondary">
+                            Let's Connect
                         </a>
                     </div>
+
+                    <div class="skills-preview">
+                        <div class="skill-badge">Python</div>
+                        <div class="skill-badge">LangChain</div>
+                        <div class="skill-badge">PowerBI</div>
+                        <div class="skill-badge">Tableau</div>
+                        <div class="skill-badge">FastAPI</div>
+                        <div class="skill-badge">SQL</div>
+                        <div class="skill-badge">R</div>
+                    </div>
                 </div>
-                <a href="mailto:huangminzxx@gmail.com" class="btn btn-secondary">
-                    📫 Let's Connect
-                </a>
             </div>
 
-            <!-- Skills Preview -->
-            <div class="skills-preview">
-                <div class="skill-badge">Python</div>
-                <div class="skill-badge">LangChain</div>
-                <div class="skill-badge">PowerBI</div>
-                <div class="skill-badge">Tableau</div>
-                <div class="skill-badge">FastAPI</div>
-                <div class="skill-badge">SQL</div>
-                <div class="skill-badge">R</div>
+            <!-- Right Side: Latest Projects -->
+            <div class="hero-right">
+                <div class="mini-project-card">
+                    <h3>📊 Interactive Data Dashboard</h3>
+                    <p>Built a web-based dashboard featuring dynamic charts, real-time data filtering, and responsive
+                        design for optimal cross-device visualization.</p>
+                    <a href="./dashboard.html" class="mini-project-link">
+                        View Dashboard →
+                    </a>
+                </div>
+
+                <div class="mini-project-card">
+                    <h3>📝 BioLaySumm: Biomedical Lay Summarization</h3>
+                    <p>Benchmarked LLMs (BioMistral-7B, GPT-3.5, Mixtral-8x7B) to transform complex biomedical research
+                        into accessible summaries for non-expert audiences.</p>
+                    <a href="https://github.com/MinzhiHuang/BioLaySumm" class="mini-project-link">
+                        View on GitHub →
+                    </a>
+                </div>
+
+                <div class="mini-project-card">
+                    <h3>🔬 More Projects Coming Soon</h3>
+                    <p>Machine learning models, predictive analytics, and AI automation systems currently under
+                        development...</p>
+                    <a href="#data-scientist" class="mini-project-link">
+                        Explore All Projects →
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -967,7 +940,7 @@
         </div>
     </section>
 
-    <!-- Content Background Wrapper -->
+    <!-- Content Background Wrapper - Second Page -->
     <div class="content-background">
         <!-- Data Analyst Work Section -->
         <section class="content-section" id="data-analyst">
@@ -1037,6 +1010,40 @@
                     </a>
                     <a href="https://biolaysumm.org/2023/" class="project-link secondary">
                         🌐 BioLaySumm Task
+                    </a>
+                </div>
+            </div>
+
+            <!-- Interactive Dashboard Project -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">📊</div>
+                    <div class="project-info">
+                        <h3>Interactive Data Dashboard</h3>
+                        <div class="project-type">Data Visualization • Full-Stack Development</div>
+                    </div>
+                </div>
+                <div class="project-description">
+                    Built an interactive web-based dashboard for real-time data visualization and analysis. Features dynamic charts, 
+                    filtering capabilities, and responsive design for optimal viewing across devices. Demonstrates proficiency in 
+                    front-end development and data presentation.
+                </div>
+                <div class="tech-stack">
+                    <h4>Tech Stack</h4>
+                    <div class="tech-tags">
+                        <div class="tech-tag">HTML5</div>
+                        <div class="tech-tag">CSS3</div>
+                        <div class="tech-tag">JavaScript</div>
+                        <div class="tech-tag">Chart.js</div>
+                        <div class="tech-tag">Data Visualization</div>
+                    </div>
+                </div>
+                <div class="project-links">
+                    <a href="./dashboard.html" class="project-link">
+                        📊 View Live Dashboard
+                    </a>
+                    <a href="https://github.com/MinzhiHuang/dashboard" class="project-link secondary">
+                        💻 GitHub Repository
                     </a>
                 </div>
             </div>
