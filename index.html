@@ -1,675 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Minzhi Huang - Data Analyst & AI Engineer</title>
-    <style>
-        /* =========================
-           Base reset & typography
-           ========================= */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minzhi Huang - Data Analyst & AI Engineer</title>
+  <style>
+    /* Reset & base */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+      line-height:1.6; overflow-x:hidden;
+    }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+    /* Hero background */
+    .hero {
+      min-height:100vh;
+      background:linear-gradient(135deg,#74b9ff 0%,#0984e3 50%,#00b894 100%);
+      position:relative;
+      display:flex; align-items:center; justify-content:center;
+      color:white; padding:120px 50px 80px;
+    }
 
-        /* =========================
-           Hero (split layout, animated bg)
-           ========================= */
-        .hero {
-            min-height: 100vh;
-            background:
-                radial-gradient(circle at 20% 80%, rgba(116, 185, 255, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(0, 184, 148, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(9, 132, 227, 0.15) 0%, transparent 50%),
-                linear-gradient(135deg, #74b9ff 0%, #0984e3 50%, #00b894 100%);
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            overflow: hidden;
-            padding: 120px 50px 80px;
-        }
+    /* Container two columns */
+    .hero-container {
+      display:grid; grid-template-columns:1fr 1fr; gap:60px;
+      max-width:1400px; width:100%; align-items:start; z-index:2;
+    }
+    .hero-left { display:flex; flex-direction:column; align-items:center; text-align:center; }
+    .hero-right { padding:0; max-height:80vh; overflow-y:auto; }
 
-        /* Decorative SVG overlay (animated) */
-        .hero::before {
-            content: '';
-            position: absolute; inset: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="200" cy="150" r="4" fill="%23ffffff" opacity="0.9"/><circle cx="350" cy="200" r="6" fill="%2374b9ff" opacity="0.8"/><circle cx="500" cy="180" r="5" fill="%2300b894" opacity="0.7"/><line x1="200" y1="150" x2="350" y2="200" stroke="%23ffffff" stroke-width="1" opacity="0.3"/><line x1="350" y1="200" x2="500" y2="180" stroke="%2374b9ff" stroke-width="1" opacity="0.25"/></svg>');
-            animation: dataFlow 25s linear infinite;
-            z-index: 0;
-        }
+    /* Scrollbar for right column */
+    .hero-right::-webkit-scrollbar { width:6px; }
+    .hero-right::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.3); border-radius:10px; }
 
-        /* Decorative chart line (animated pulse) */
-        .hero::after {
-            content: '';
-            position: absolute; inset: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><path d="M 100 800 Q 200 700 300 750 T 500 650" stroke="%2374b9ff" stroke-width="2" fill="none" opacity="0.6"/><rect x="120" y="850" width="15" height="80" fill="%2374b9ff" opacity="0.4"/></svg>');
-            animation: chartPulse 20s ease-in-out infinite;
-            z-index: 0;
-        }
+    /* Navigation */
+    .nav {
+      position:fixed; top:0; width:100%;
+      padding:15px 50px; background:rgba(255,255,255,0.1);
+      backdrop-filter:blur(20px);
+      border-bottom:1px solid rgba(255,255,255,0.1);
+      z-index:1000;
+    }
+    .nav-container{ display:flex; justify-content:space-between; align-items:center; max-width:1200px; margin:0 auto; }
+    .nav-links{ display:flex; list-style:none; gap:30px; }
+    .nav-links a{ color:white; text-decoration:none; font-weight:500; position:relative; }
 
-        .data-particles { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-        .data-particles::before {
-            content: '';
-            position: absolute; top: 20%; left: 10%;
-            width: 8px; height: 8px; background: #74b9ff; border-radius: 50%;
-            box-shadow:
-                0 0 10px rgba(116, 185, 255, 0.8),
-                200px 50px 0 -2px rgba(0, 184, 148, 0.6),
-                400px 100px 0 -1px rgba(255, 255, 255, 0.7);
-            animation: particleFlow 30s linear infinite;
-        }
+    /* Profile section */
+    .profile-image {
+      width:180px; height:180px; border-radius:50%; margin:0 auto 30px;
+      overflow:hidden; box-shadow:0 20px 40px rgba(0,0,0,0.3);
+    }
+    .hero h1 { font-size:3.5rem; font-weight:800; margin-bottom:20px; }
+    .hero .subtitle { font-size:1.4rem; margin-bottom:10px; font-weight:600; }
+    .hero .description { max-width:500px; margin:0 auto 40px; }
 
-        @keyframes dataFlow {
-            0%, 100% { transform: translateX(0) translateY(0); opacity: 0.8; }
-            50% { transform: translateX(0) translateY(-20px); opacity: 0.9; }
-        }
-        @keyframes chartPulse {
-            0%, 100% { transform: scale(1) translateY(0); opacity: 0.7; }
-            50% { transform: scale(1.02) translateY(-5px); opacity: 0.9; }
-        }
-        @keyframes particleFlow {
-            0% { transform: translateX(-50px) translateY(0); opacity: 0; }
-            10%, 90% { opacity: 1; }
-            100% { transform: translateX(100vw) translateY(-100px); opacity: 0; }
-        }
+    /* Buttons */
+    .hero-buttons{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-bottom:30px; }
+    .btn{ padding:10px 18px; border:none; border-radius:50px; font-weight:600; cursor:pointer; }
+    .btn-primary{ background:linear-gradient(45deg,#ff6b6b,#ee5a52); color:white; }
+    .btn-secondary{ background:rgba(255,255,255,0.2); color:white; border:2px solid rgba(255,255,255,0.3); }
 
-        /* =========================
-           Two-column container
-           ========================= */
-        .hero-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            max-width: 1400px;
-            width: 100%;
-            align-items: start;
-            z-index: 2;
-        }
-        .hero-left { display: flex; flex-direction: column; align-items: center; text-align: center; }
-        .hero-right { padding: 0; max-height: 80vh; overflow-y: auto; }
+    /* Skills */
+    .skills-preview{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+    .skill-badge{ background:rgba(255,255,255,0.1); padding:6px 14px; border-radius:25px; }
 
-        /* Custom scrollbar for the right column */
-        .hero-right::-webkit-scrollbar { width: 6px; }
-        .hero-right::-webkit-scrollbar-track { background: transparent; }
-        .hero-right::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.3); border-radius: 10px; }
-        .hero-right::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.5); }
+    /* Mini project cards */
+    .mini-project-card {
+      background:rgba(255,255,255,0.15);
+      backdrop-filter:blur(10px);
+      border-radius:15px;
+      padding:25px; margin-bottom:20px;
+      border:1px solid rgba(255,255,255,0.2);
+    }
+    .mini-project-card h3{ font-size:1.1rem; font-weight:600; margin-bottom:8px; }
+    .mini-project-card p{ font-size:0.9rem; line-height:1.5; margin-bottom:15px; }
 
-        /* =========================
-           Mini project cards (right column)
-           ========================= */
-        .latest-section-title { display: none; }
+    /* 🔥 New style: Currently Working On (glass card with dark text) */
+    .current-glass{
+      background:rgba(255,255,255,0.9);
+      border:1px solid rgba(116,185,255,0.35);
+      color:#213547;  /* dark text for readability */
+    }
+    .current-glass h3{
+      margin-bottom:6px;
+      background:linear-gradient(45deg,#0984e3,#00b894);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      font-weight:800;
+      font-size:1.05rem;
+    }
+    .current-glass strong{ color:#0f4c75; }
 
-        .mini-project-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-        .mini-project-card:hover {
-            transform: translateX(5px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-        .mini-project-card h3 {
-            font-size: 1.1rem; color: white; margin-bottom: 8px; font-weight: 600;
-        }
-        .mini-project-card p {
-            font-size: 0.9rem; color: rgba(255, 255, 255, 0.9); line-height: 1.5; margin-bottom: 15px;
-        }
-        .mini-project-link {
-            display: inline-flex; align-items: center; gap: 5px;
-            color: white; text-decoration: none; font-size: 0.85rem; font-weight: 500;
-            transition: all 0.3s ease; opacity: 0.9;
-        }
-        .mini-project-link:hover { opacity: 1; gap: 8px; }
+    /* Links */
+    .mini-project-link{ color:white; font-size:0.85rem; text-decoration:none; }
+    .mini-project-link:hover{ text-decoration:underline; }
 
-        /* =========================
-           NEW: Highlight "Currently Working On" card
-           (adds an artsy emphasis block for your current focus)
-           ========================= */
-        .highlight-current {
-            background: linear-gradient(135deg, rgba(255, 223, 186, 0.95), rgba(255, 179, 186, 0.95));
-            color: #2d3436;
-            border-left: 6px solid #fd79a8;
-            font-style: italic;
-        }
-        .highlight-current h3 {
-            font-size: 1.2rem; margin-bottom: 8px;
-            background: linear-gradient(45deg, #d63031, #fd79a8);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-            font-style: normal;
-        }
-        .highlight-current p strong { font-style: normal; }
-
-        /* =========================
-           Navigation (sticky, glass)
-           ========================= */
-        .nav {
-            position: fixed; top: 0; width: 100%;
-            padding: 15px 50px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            z-index: 1000;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .nav.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            color: #333;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            border-bottom: 1px solid rgba(116, 185, 255, 0.2);
-        }
-        .nav.scrolled .nav-links a { color: #333; }
-
-        .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
-        .logo { font-size: 1.5rem; font-weight: 700; color: inherit; text-decoration: none; transition: all 0.3s ease; display: none; }
-
-        .nav-links { display: flex; list-style: none; gap: 30px; }
-        .nav-links a {
-            color: white; text-decoration: none; font-weight: 500; transition: all 0.3s ease; position: relative;
-        }
-        .nav-links a:hover { transform: translateY(-2px); }
-        .nav-links a::after {
-            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: currentColor; transition: width 0.3s ease;
-        }
-        .nav-links a:hover::after { width: 100%; }
-
-        /* =========================
-           Hero left content
-           ========================= */
-        .hero-content { display: flex; flex-direction: column; align-items: center; z-index: 2; animation: fadeInUp 1s ease-out; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px);} to { opacity: 1; transform: translateY(0);} }
-
-        .profile-image {
-            width: 180px; height: 180px; border-radius: 50%; margin: 0 auto 30px;
-            background: linear-gradient(45deg, #74b9ff, #0984e3, #00b894);
-            display: flex; align-items: center; justify-content: center;
-            box-shadow:
-                0 20px 40px rgba(0, 0, 0, 0.3),
-                0 0 0 4px rgba(116, 185, 255, 0.3),
-                0 0 0 8px rgba(116, 185, 255, 0.1);
-            transition: all 0.3s ease; position: relative; overflow: hidden;
-        }
-        .profile-image:hover {
-            transform: scale(1.05);
-            box-shadow:
-                0 25px 50px rgba(0, 0, 0, 0.4),
-                0 0 0 4px rgba(116, 185, 255, 0.5),
-                0 0 0 8px rgba(116, 185, 255, 0.2);
-        }
-
-        .hero h1 {
-            font-size: 3.5rem; font-weight: 800; margin-bottom: 20px;
-            background: linear-gradient(45deg, #fff, #f0f0f0);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
-        .hero .subtitle { font-size: 1.4rem; margin-bottom: 10px; font-weight: 600; color: #f0f0f0; }
-        .hero .description {
-            font-size: 1rem; opacity: 0.9; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto;
-        }
-
-        /* CTA buttons */
-        .hero-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; max-width: 550px; margin: 0 auto 30px; }
-        .btn {
-            padding: 10px 18px; border: none; border-radius: 50px; font-weight: 600; text-decoration: none;
-            display: inline-flex; align-items: center; gap: 6px; transition: all 0.3s ease; cursor: pointer; position: relative; overflow: hidden; font-size: 0.85rem;
-        }
-        .btn-primary { background: linear-gradient(45deg, #ff6b6b, #ee5a52); color: white; box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4); }
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.2); color: white; border: 2px solid rgba(255, 255, 255, 0.3); backdrop-filter: blur(10px);
-        }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); }
-        .btn::before {
-            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.5s ease;
-        }
-        .btn:hover::before { left: 100%; }
-
-        /* Resume dropdown */
-        .resume-dropdown { position: relative; display: inline-block; }
-        .resume-btn { display: inline-flex; align-items: center; gap: 6px; }
-        .dropdown-arrow { transition: transform 0.3s ease; font-size: 0.7rem; }
-        .resume-dropdown.active .dropdown-arrow { transform: rotate(180deg); }
-        .resume-options {
-            position: absolute; top: calc(100% + 10px); left: 50%;
-            background: rgba(255,255,255,0.95); backdrop-filter: blur(20px);
-            border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            border: 1px solid rgba(255,255,255,0.3); min-width: 200px;
-            opacity: 0; visibility: hidden; transform: translateX(-50%) translateY(-10px);
-            transition: all 0.3s ease; z-index: 1000;
-        }
-        .resume-dropdown.active .resume-options { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
-        .resume-option {
-            display: flex; align-items: center; gap: 10px; padding: 12px 18px;
-            color: #2d3436; text-decoration: none; font-weight: 500; font-size: 0.9rem;
-            transition: all 0.3s ease; border-radius: 15px; margin: 5px;
-        }
-        .resume-option:hover { background: linear-gradient(45deg, #74b9ff, #0984e3); color: white; transform: translateY(-2px); }
-
-        /* Skills row (chips) */
-        .skills-preview { margin-bottom: 20px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; z-index: 2; }
-        .skill-badge {
-            background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
-            padding: 6px 14px; border-radius: 25px; color: white; font-size: 0.8rem; font-weight: 500;
-            border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s ease;
-        }
-        .skill-badge:hover { background: rgba(255,255,255,0.2); transform: translateY(-3px); }
-
-        /* Scroll hint arrow */
-        .scroll-indicator {
-            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-            animation: bounce 2s infinite; color: white; opacity: 0.7; z-index: 2;
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
-        }
-
-        /* =========================
-           Content sections (second page)
-           ========================= */
-        .content-section { padding: 80px 50px; max-width: 1000px; margin: 0 auto; text-align: left; }
-        .section-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 40px; display: flex; align-items: center; gap: 15px; }
-        .section-title .emoji { font-size: 2.2rem; }
-        .section-title .text {
-            background: linear-gradient(45deg, #0984e3, #00b894);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
-
-        /* Project card (detailed) */
-        .project-card {
-            background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px);
-            border-radius: 20px; padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); border: 1px solid rgba(116, 185, 255, 0.2);
-            transition: all 0.3s ease; position: relative; overflow: hidden; margin-bottom: 20px;
-        }
-        .project-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15); }
-        .project-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-            background: linear-gradient(45deg, #74b9ff, #0984e3, #00b894);
-        }
-
-        .project-header { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; }
-        .project-icon {
-            width: 50px; height: 50px; background: linear-gradient(45deg, #74b9ff, #0984e3);
-            border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;
-        }
-        .project-info h3 { font-size: 1.4rem; color: #2d3436; margin-bottom: 5px; font-weight: 700; }
-        .project-type { color: #636e72; font-size: 0.9rem; font-weight: 500; }
-        .project-description { color: #2d3436; line-height: 1.6; margin-bottom: 20px; font-size: 1rem; }
-
-        .tech-stack { margin-bottom: 25px; }
-        .tech-stack h4 { color: #00b894; font-size: 0.9rem; margin-bottom: 10px; font-weight: 600; text-transform: uppercase; }
-        .tech-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-        .tech-tag {
-            background: linear-gradient(135deg, #00b894, #00a085);
-            color: white; padding: 4px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: 500;
-        }
-
-        .project-links { display: flex; gap: 12px; flex-wrap: wrap; }
-        .project-link {
-            display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px;
-            background: linear-gradient(45deg, #74b9ff, #0984e3); color: white; text-decoration: none; border-radius: 20px;
-            font-size: 0.9rem; font-weight: 500; transition: all 0.3s ease;
-        }
-        .project-link:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(116, 185, 255, 0.4); }
-        .project-link.secondary { background: linear-gradient(45deg, #636e72, #2d3436); }
-        .featured-badge {
-            display: inline-block; background: linear-gradient(45deg, #fdcb6e, #e17055); color: white;
-            padding: 4px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: 600; margin-bottom: 15px; text-transform: uppercase;
-        }
-
-        /* Coming soon block */
-        .coming-soon {
-            background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px);
-            border: 1px solid rgba(116, 185, 255, 0.3);
-            border-radius: 20px; padding: 60px 40px; margin: 20px 0; text-align: center;
-            box-shadow: 0 8px 25px rgba(0, 184, 148, 0.15); transition: all 0.3s ease;
-        }
-        .coming-soon:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(0, 184, 148, 0.25); }
-        .coming-soon h3 {
-            font-size: 1.5rem; margin-bottom: 15px;
-            background: linear-gradient(45deg, #74b9ff, #00b894);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
-        .coming-soon p { font-size: 1.1rem; color: #2d3436; line-height: 1.6; }
-
-        /* BG wrapper for second page */
-        .content-background {
-            background: linear-gradient(135deg, #e3f2fd 0%, #f0f8ff 40%, #f5fbff 70%, #e8f5e8 100%);
-            min-height: 100vh; padding: 40px 0;
-        }
-
-        /* =========================
-           Responsive
-           ========================= */
-        @media (max-width: 968px) {
-            .hero-container { grid-template-columns: 1fr; gap: 30px; }
-            .hero-right { max-height: none; }
-        }
-
-        @media (max-width: 768px) {
-            .hero { padding: 100px 20px 60px; }
-            .hero-right { padding: 25px; }
-            .hero h1 { font-size: 2.5rem; }
-            .hero .subtitle { font-size: 1.2rem; }
-            .profile-image { width: 150px; height: 150px; }
-            .content-section { padding: 60px 20px; }
-            .section-title { font-size: 1.8rem; }
-            .nav { padding: 15px 20px; }
-            .nav-links { gap: 15px; font-size: 0.85rem; }
-            .hero-buttons { gap: 8px; }
-            .btn { padding: 8px 14px; font-size: 0.75rem; }
-            .skills-preview { gap: 6px; }
-            .skill-badge { padding: 5px 10px; font-size: 0.7rem; }
-            .project-card { padding: 25px 20px; }
-            .project-header { flex-direction: column; gap: 10px; }
-        }
-    </style>
+    /* Responsive */
+    @media(max-width:968px){ .hero-container{ grid-template-columns:1fr; gap:30px; } }
+    @media(max-width:768px){ .hero{ padding:100px 20px 60px; } .hero h1{ font-size:2.5rem; } }
+  </style>
 </head>
 <body>
-    <!-- =========================
-         Navigation (sticky)
-         ========================= -->
-    <nav class="nav" id="navbar" aria-label="Primary">
-        <div class="nav-container">
-            <a href="#home" class="logo">MH</a>
-            <ul class="nav-links">
-                <li><a href="#home">HOME</a></li>
-                <li><a href="./about.html">ABOUT</a></li>
-                <li><a href="./project.html">PROJECTS</a></li>
-                <li><a href="./blog.html">BLOG</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- =========================
-         Hero (first screen)
-         ========================= -->
-    <section class="hero" id="home">
-        <div class="data-particles" aria-hidden="true"></div>
-
-        <div class="hero-container">
-            <!-- ===== Left: profile & CTAs ===== -->
-            <div class="hero-left">
-                <div class="hero-content">
-                    <div class="profile-image" aria-hidden="true">
-                        <img src="./images/profile.jpg" alt="Minzhi Huang"
-                             style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" />
-                    </div>
-
-                    <h1>Minzhi Huang</h1>
-                    <div class="subtitle">Data Analyst & AI Engineer</div>
-                    <p class="description">
-                        Transforming complex data into actionable business insights through statistical analysis,
-                        interactive dashboards, and intelligent AI solutions that drive measurable impact across
-                        organizations.
-                    </p>
-
-                    <!-- Action buttons -->
-                    <div class="hero-buttons">
-                        <a href="#data-analyst" class="btn btn-primary">Data Analyst Work</a>
-                        <a href="#data-scientist" class="btn btn-primary">Data Scientist Work</a>
-                        <a href="#nlp-ai" class="btn btn-primary">NLP/AI Work</a>
-
-                        <!-- Resume dropdown -->
-                        <div class="resume-dropdown">
-                            <button class="btn btn-secondary resume-btn" onclick="toggleResumeDropdown()" aria-haspopup="true" aria-expanded="false">
-                                Download Resume <span class="dropdown-arrow">▼</span>
-                            </button>
-                            <div class="resume-options" id="resumeOptions" role="menu">
-                                <a href="./resume/Minzhi_Resume_Data_Analyst.pdf" class="resume-option" download role="menuitem">
-                                    Data Analyst Resume
-                                </a>
-                                <a href="./resume/Minzhi_Resume_AI_Engineer.pdf" class="resume-option" download role="menuitem">
-                                    AI Engineer Resume
-                                </a>
-                            </div>
-                        </div>
-
-                        <a href="mailto:huangminzxx@gmail.com" class="btn btn-secondary">Let's Connect</a>
-                    </div>
-
-                    <!-- Skills chips -->
-                    <div class="skills-preview" aria-label="Skills">
-                        <div class="skill-badge">Python</div>
-                        <div class="skill-badge">LangChain</div>
-                        <div class="skill-badge">PowerBI</div>
-                        <div class="skill-badge">Tableau</div>
-                        <div class="skill-badge">FastAPI</div>
-                        <div class="skill-badge">SQL</div>
-                        <div class="skill-badge">R</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ===== Right: latest mini-cards ===== -->
-            <div class="hero-right" aria-label="Latest Work Highlights">
-                <!-- ***************************************
-                     NEW: "Currently Working On" highlight card
-                     (what you're doing right now)
-                     *************************************** -->
-                <div class="mini-project-card highlight-current">
-                    <h3>✨ Currently Working On</h3>
-                    <p>
-                        I’m currently working on <strong>BI projects with retail data</strong>,
-                        using <strong>Power BI</strong> and <strong>Tableau</strong> for analytics and visualization,
-                        while also learning <strong>cloud technologies</strong>.
-                    </p>
-                </div>
-
-                <!-- Customer Service Dashboard -->
-                <div class="mini-project-card">
-                    <h3>📊 Customer Service Performance Dashboard</h3>
-                    <p>
-                        Built a web-based dashboard featuring dynamic charts, real-time data filtering, and responsive
-                        design for optimal cross-device visualization.
-                    </p>
-                    <a href="https://minzhihuang.github.io/Chloe_demo_dashboard/" class="mini-project-link" target="_blank" rel="noopener">
-                        View Dashboard →
-                    </a>
-                </div>
-
-                <!-- BioLaySumm -->
-                <div class="mini-project-card">
-                    <h3>📝 BioLaySumm: Biomedical Lay Summarization</h3>
-                    <p>
-                        Benchmarked LLMs (BioMistral-7B, GPT-3.5, Mixtral-8x7B) to transform complex biomedical research
-                        into accessible summaries for non-expert audiences.
-                    </p>
-                    <a href="https://github.com/MinzhiHuang/BioLaySumm" class="mini-project-link" target="_blank" rel="noopener">
-                        View on GitHub →
-                    </a>
-                </div>
-
-                <!-- Coming soon -->
-                <div class="mini-project-card">
-                    <h3>🔬 More Projects Coming Soon</h3>
-                    <p>
-                        Machine learning models, predictive analytics, and AI automation systems currently under development...
-                    </p>
-                    <a href="#data-scientist" class="mini-project-link">Explore All Projects →</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Scroll indicator -->
-        <div class="scroll-indicator" aria-hidden="true">
-            <div style="font-size: 1.5rem;">↓</div>
-        </div>
-    </section>
-
-    <!-- =========================
-         Second page content
-         ========================= -->
-    <div class="content-background">
-        <!-- Data Analyst Work -->
-        <section class="content-section" id="data-analyst">
-            <h2 class="section-title"><span class="emoji">📊</span><span class="text">Data Analyst Work</span></h2>
-            <div class="coming-soon">
-                <h3>🚀 Exciting Projects Coming Soon</h3>
-                <p>Statistical analysis, interactive dashboards, and business intelligence solutions currently in
-                    development...</p>
-            </div>
-        </section>
-
-        <!-- Data Scientist Work -->
-        <section class="content-section" id="data-scientist">
-            <h2 class="section-title"><span class="emoji">🔬</span><span class="text">Data Scientist Work</span></h2>
-            <div class="coming-soon">
-                <h3>🚀 Exciting Projects Coming Soon</h3>
-                <p>Machine learning models, predictive analytics, and advanced statistical modeling projects in progress...</p>
-            </div>
-        </section>
-
-        <!-- NLP/AI Work -->
-        <section class="content-section" id="nlp-ai">
-            <h2 class="section-title"><span class="emoji">🤖</span><span class="text">NLP/AI Work</span></h2>
-
-            <!-- BioLaySumm (detailed card) -->
-            <div class="project-card">
-                <div class="featured-badge">⭐ Featured Project</div>
-                <div class="project-header">
-                    <div class="project-icon">📝</div>
-                    <div class="project-info">
-                        <h3>BioLaySumm: Biomedical Lay Summarization</h3>
-                        <div class="project-type">NLP • Large Language Models • Hackathon</div>
-                    </div>
-                </div>
-                <div class="project-description">
-                    🏆 Participated in BioLaySumm 2023 Shared Task @ ACL 2023 BioNLP Workshop. Benchmarked and optimized
-                    multiple large language models (BioMistral-7B, GPT-3.5, Mixtral-8x7B) to automatically generate lay
-                    summaries of complex biomedical research articles. The goal is to make scientific research
-                    accessible to non-expert audiences by transforming technical content into readable, comprehensible
-                    summaries with background information and simplified terminology.
-                </div>
-                <div class="tech-stack">
-                    <h4>Tech Stack</h4>
-                    <div class="tech-tags">
-                        <div class="tech-tag">Python</div>
-                        <div class="tech-tag">Exploratory Data Analysis</div>
-                        <div class="tech-tag">Large Language Models</div>
-                        <div class="tech-tag">Transformers</div>
-                        <div class="tech-tag">NLP</div>
-                        <div class="tech-tag">Few-shot Learning</div>
-                        <div class="tech-tag">Biomedical AI</div>
-                    </div>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/MinzhiHuang/BioLaySumm" class="project-link" target="_blank" rel="noopener">💻 GitHub Repository</a>
-                    <a href="https://biolaysumm.org/2023/" class="project-link secondary" target="_blank" rel="noopener">🌐 BioLaySumm Task</a>
-                </div>
-            </div>
-
-            <!-- Customer Service Performance Dashboard (detailed) -->
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon">📊</div>
-                    <div class="project-info">
-                        <h3>Customer Service Performance Dashboard</h3>
-                        <div class="project-type">Data Visualization • Full-Stack Development</div>
-                    </div>
-                </div>
-                <div class="project-description">
-                    Rapidly vibe-coded an interactive web-based dashboard for weekly customer service performance visualization and analysis.
-                    Features dynamic charts, filtering capabilities, and a responsive design for optimal viewing across devices.
-                </div>
-                <div class="tech-stack">
-                    <h4>Tech Stack</h4>
-                    <div class="tech-tags">
-                        <div class="tech-tag">HTML5</div>
-                        <div class="tech-tag">CSS3</div>
-                        <div class="tech-tag">JavaScript</div>
-                        <div class="tech-tag">Chart.js</div>
-                        <div class="tech-tag">Data Visualization</div>
-                        <div class="tech-tag">Vibe Coding</div>
-                    </div>
-                </div>
-                <div class="project-links">
-                    <a href="https://minzhihuang.github.io/Chloe_demo_dashboard/" class="project-link" target="_blank" rel="noopener">📊 View Live Dashboard</a>
-                </div>
-            </div>
-
-            <div class="coming-soon">
-                <h3>🚀 More AI Projects Coming Soon</h3>
-                <p>Additional AI agents, LLM applications, and intelligent automation systems under development...</p>
-            </div>
-        </section>
-
-        <!-- Blog -->
-        <section class="content-section" id="blog-preview">
-            <h2 class="section-title"><span class="emoji">✨</span><span class="text">Blog</span></h2>
-            <div class="coming-soon">
-                <h3>🚀 Exciting Content Coming Soon</h3>
-                <p>Technical insights, career journey stories, and data science tutorials coming very soon...</p>
-            </div>
-        </section>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="#home" class="logo">MH</a>
+      <ul class="nav-links">
+        <li><a href="#home">HOME</a></li>
+        <li><a href="./about.html">ABOUT</a></li>
+        <li><a href="./project.html">PROJECTS</a></li>
+        <li><a href="./blog.html">BLOG</a></li>
+      </ul>
     </div>
+  </nav>
 
-    <!-- =========================
-         Scripts (UX interactions)
-         ========================= -->
-    <script>
-        // Sticky navbar style on scroll
-        window.addEventListener('scroll', function () {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) navbar.classList.add('scrolled');
-            else navbar.classList.remove('scrolled');
-        });
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-container">
+      <!-- Left side -->
+      <div class="hero-left">
+        <div class="profile-image">
+          <img src="./images/profile.jpg" alt="Minzhi Huang" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <h1>Minzhi Huang</h1>
+        <div class="subtitle">Data Analyst & AI Engineer</div>
+        <p class="description">
+          Transforming complex data into actionable business insights through statistical analysis,
+          interactive dashboards, and intelligent AI solutions that drive measurable impact across organizations.
+        </p>
+        <div class="hero-buttons">
+          <a href="#data-analyst" class="btn btn-primary">Data Analyst Work</a>
+          <a href="#data-scientist" class="btn btn-primary">Data Scientist Work</a>
+          <a href="#nlp-ai" class="btn btn-primary">NLP/AI Work</a>
+          <a href="mailto:huangminzxx@gmail.com" class="btn btn-secondary">Let's Connect</a>
+        </div>
+        <div class="skills-preview">
+          <div class="skill-badge">Python</div>
+          <div class="skill-badge">PowerBI</div>
+          <div class="skill-badge">Tableau</div>
+          <div class="skill-badge">SQL</div>
+          <div class="skill-badge">FastAPI</div>
+        </div>
+      </div>
 
-        // Smooth scroll for in-page anchors
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                // only intercept if anchor points to an element on this page
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    e.preventDefault();
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
+      <!-- Right side -->
+      <div class="hero-right">
+        <!-- ✅ Currently Working On -->
+        <div class="mini-project-card current-glass">
+          <h3>✨ Currently Working On</h3>
+          <p>
+            Working on <strong>retail BI projects</strong> using <strong>Power BI</strong> and <strong>Tableau</strong>
+            for analytics and visualization, while also learning <strong>cloud technologies</strong>.
+          </p>
+        </div>
 
-        // Button hover micro-interaction
-        document.querySelectorAll('.btn').forEach(button => {
-            button.addEventListener('mouseenter', function () {
-                this.style.transform = 'translateY(-3px) scale(1.05)';
-            });
-            button.addEventListener('mouseleave', function () {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
+        <!-- Dashboard project -->
+        <div class="mini-project-card">
+          <h3>📊 Customer Service Performance Dashboard</h3>
+          <p>Built a web-based dashboard featuring dynamic charts, real-time data filtering, and responsive design for optimal cross-device visualization.</p>
+          <a href="https://minzhihuang.github.io/Chloe_demo_dashboard/" class="mini-project-link" target="_blank">View Dashboard →</a>
+        </div>
 
-        // Resume dropdown toggle
-        function toggleResumeDropdown() {
-            const dropdown = document.querySelector('.resume-dropdown');
-            const isActive = dropdown.classList.toggle('active');
-            // Update aria-expanded for accessibility
-            dropdown.querySelector('.resume-btn').setAttribute('aria-expanded', String(isActive));
-        }
-        window.toggleResumeDropdown = toggleResumeDropdown; // expose to inline onclick
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function (event) {
-            const dropdown = document.querySelector('.resume-dropdown');
-            if (!dropdown.contains(event.target)) dropdown.classList.remove('active');
-        });
-
-        // Close dropdown via ESC key
-        document.addEventListener('keydown', function (event) {
-            if (event.key === 'Escape') document.querySelector('.resume-dropdown').classList.remove('active');
-        });
-    </script>
+        <!-- BioLaySumm project -->
+        <div class="mini-project-card">
+          <h3>📝 BioLaySumm: Biomedical Lay Summarization</h3>
+          <p>Benchmarked LLMs (BioMistral-7B, GPT-3.5, Mixtral-8x7B) to transform complex biomedical research into accessible summaries for non-expert audiences.</p>
+          <a href="https://github.com/MinzhiHuang/BioLaySumm" class="mini-project-link" target="_blank">View on GitHub →</a>
+        </div>
+      </div>
+    </div>
+  </section>
 </body>
 </html>
