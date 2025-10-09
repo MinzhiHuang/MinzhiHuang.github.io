@@ -135,24 +135,38 @@
         .mini-project-link:hover { opacity: 1; gap: 8px; }
 
         /* =========================
-           NEW: Highlight "Currently Working On" card
-           (BLUE version only; nothing else changed)
+           Highlight "Currently Working On" card
+           - Blue glass card (you already use)
+           - BELOW we ONLY tune text for readability
            ========================= */
         .highlight-current {
-            /* light blue glassy gradient background */
-            background: linear-gradient(135deg, rgba(203,235,255,0.95), rgba(185,245,255,0.95));
-            color: #2d3436;
-            border-left: 6px solid #0984e3;     /* blue accent bar */
-            font-style: italic;
+            /* 保持蓝色玻璃卡片风格（白色微透明 + 蓝色边框） */
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid rgba(116, 185, 255, 0.35);
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(13, 64, 125, 0.12);
+            color: #0f2a3d;      /* 深一点的正文色 */
+            font-style: normal;  /* 取消斜体，增强可读性 */
         }
         .highlight-current h3 {
-            font-size: 1.2rem; margin-bottom: 8px;
-            /* title gradient switched to blue→green to match site theme */
-            background: linear-gradient(45deg, #0984e3, #00b894);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            /* 用纯色标题替代渐变，增强对比度 */
+            background: none;
+            -webkit-text-fill-color: initial;
+            color: #0a3d62;      /* 深蓝标题 */
+            font-weight: 800;
+            letter-spacing: .2px;
+            margin-bottom: 8px;
+        }
+        .highlight-current p {
+            color: rgba(13, 38, 59, 0.92); /* 正文更高对比度 */
+            font-weight: 500;              /* 略加字重 */
+            line-height: 1.65;
             font-style: normal;
         }
-        .highlight-current p strong { font-style: normal; }
+        .highlight-current strong {
+            color: #073b77;     /* 关键词更深一点 */
+            font-weight: 700;
+        }
 
         /* =========================
            Navigation (sticky, glass)
@@ -375,7 +389,6 @@
             .hero-buttons { gap: 8px; }
             .btn { padding: 8px 14px; font-size: 0.75rem; }
             .skills-preview { gap: 6px; }
-            .skill-badge { padding: 5px 10px; font-size: 0.7rem; }
             .project-card { padding: 25px 20px; }
             .project-header { flex-direction: column; gap: 10px; }
         }
@@ -459,10 +472,7 @@
 
             <!-- ===== Right: latest mini-cards ===== -->
             <div class="hero-right" aria-label="Latest Work Highlights">
-                <!-- ***************************************
-                     NEW: "Currently Working On" highlight card
-                     (what you're doing right now)
-                     *************************************** -->
+                <!-- "Currently Working On" highlight card (text styles improved) -->
                 <div class="mini-project-card highlight-current">
                     <h3>✨ Currently Working On</h3>
                     <p>
