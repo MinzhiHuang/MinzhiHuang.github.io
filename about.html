@@ -375,6 +375,116 @@
             margin-bottom: 30px;
         }
 
+        /* City cards grid (each city has a mini carousel) */
+        .city-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .city-card {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(116, 185, 255, 0.3);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .city-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(116, 185, 255, 0.25);
+        }
+
+        .city-header {
+            padding: 16px 18px 10px;
+        }
+
+        .city-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0a3d62;
+            margin-bottom: 4px;
+        }
+
+        .city-subtitle {
+            font-size: 0.9rem;
+            color: #636e72;
+        }
+
+        .carousel {
+            position: relative;
+            padding: 10px 10px 16px;
+        }
+
+        .carousel-viewport {
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.35s ease;
+            width: 100%;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            aspect-ratio: 4/3;
+            position: relative;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            pointer-events: none;
+            padding: 0 6px;
+        }
+
+        .carousel-btn {
+            pointer-events: all;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(9, 132, 227, 0.85);
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 0 6px 16px rgba(9, 132, 227, 0.35);
+            transition: transform 0.15s ease, background 0.2s ease;
+        }
+
+        .carousel-btn:hover {
+            transform: scale(1.06);
+            background: rgba(9, 132, 227, 0.95);
+        }
+
+        .carousel-counter {
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            background: rgba(0, 0, 0, 0.55);
+            color: #fff;
+            font-size: 0.8rem;
+            padding: 4px 8px;
+            border-radius: 10px;
+        }
+
         .photo-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -708,95 +818,16 @@
                 </div>
             </div>
 
-            <!-- Photo Gallery Section -->
+            <!-- Photo Gallery Section (City cards with carousels) -->
             <div class="gallery-section">
                 <h3 class="gallery-title">
                     <span>📸</span>
-                    Beautiful Banff
+                    My Photography Collections
                 </h3>
-                <p class="gallery-subtitle">A curated collection from Banff National Park</p>
+                <p class="gallery-subtitle">Browse cities and swipe through photos in each card</p>
 
-                <div class="photo-grid">
-                    <!-- Image 1 -->
-                    <div class="photo-item" onclick="openLightbox(0)">
-                        <img src="./images/image1.jpg" alt="Beautiful Banff Image 1">
-                        <div class="photo-overlay">
-                            <div class="photo-location">Banff</div>
-                            <div class="photo-description">Image 1</div>
-                        </div>
-                    </div>
-
-                    <!-- Image 2 -->
-                    <div class="photo-item" onclick="openLightbox(1)">
-                        <img src="./images/image2.jpg" alt="Beautiful Banff Image 2">
-                        <div class="photo-overlay">
-                            <div class="photo-location">Banff</div>
-                            <div class="photo-description">Image 2</div>
-                        </div>
-                    </div>
-
-                    <!-- Image 3 -->
-                    <div class="photo-item" onclick="openLightbox(2)">
-                        <img src="./images/image3.jpg" alt="Beautiful Banff Image 3">
-                        <div class="photo-overlay">
-                            <div class="photo-location">Banff</div>
-                            <div class="photo-description">Image 3</div>
-                        </div>
-                    </div>
-
-                    <!-- Image 4 -->
-                    <div class="photo-item" onclick="openLightbox(3)">
-                        <img src="./images/image4.jpg" alt="Beautiful Banff Image 4">
-                        <div class="photo-overlay">
-                            <div class="photo-location">Banff</div>
-                            <div class="photo-description">Image 4</div>
-                        </div>
-                    </div>
-
-                    <!-- Image 5 -->
-                    <div class="photo-item" onclick="openLightbox(4)">
-                        <img src="./images/image5.jpg" alt="Beautiful Banff Image 5">
-                        <div class="photo-overlay">
-                            <div class="photo-location">Banff</div>
-                            <div class="photo-description">Image 5</div>
-                        </div>
-                    </div>
-
-                    <!-- Image 6 -->
-                    <div class="photo-item" onclick="openLightbox(5)">
-                        <img src="./images/image6.jpg" alt="Beautiful Banff Image 6">
-                        <div class="photo-overlay">
-                            <div class="photo-location">Banff</div>
-                            <div class="photo-description">Image 6</div>
-                        </div>
-                    </div>
-
-                    <!-- Image 7 -->
-                    <div class="photo-item" onclick="openLightbox(6)">
-                        <img src="./images/image7.jpg" alt="Beautiful Banff Image 7">
-                        <div class="photo-overlay">
-                            <div class="photo-location">Banff</div>
-                            <div class="photo-description">Image 7</div>
-                        </div>
-                    </div>
-
-                    <!-- Image 8 -->
-                    <div class="photo-item" onclick="openLightbox(7)">
-                        <img src="./images/image8.jpg" alt="Beautiful Banff Image 8">
-                        <div class="photo-overlay">
-                            <div class="photo-location">Banff</div>
-                            <div class="photo-description">Image 8</div>
-                        </div>
-                    </div>
-
-                    <!-- Image 9 -->
-                    <div class="photo-item" onclick="openLightbox(8)">
-                        <img src="./images/image9.jpg" alt="Beautiful Banff Image 9">
-                        <div class="photo-overlay">
-                            <div class="photo-location">Banff</div>
-                            <div class="photo-description">Image 9</div>
-                        </div>
-                    </div>
+                <div class="city-cards-grid" id="cityGrid">
+                    <!-- Cards injected by script -->
                 </div>
             </div>
         </section>
@@ -815,28 +846,109 @@
     </div>
 
     <script>
-        const photos = [
-            { src: './images/image1.jpg', location: 'Banff', description: 'Image 1' },
-            { src: './images/image2.jpg', location: 'Banff', description: 'Image 2' },
-            { src: './images/image3.jpg', location: 'Banff', description: 'Image 3' },
-            { src: './images/image4.jpg', location: 'Banff', description: 'Image 4' },
-            { src: './images/image5.jpg', location: 'Banff', description: 'Image 5' },
-            { src: './images/image6.jpg', location: 'Banff', description: 'Image 6' },
-            { src: './images/image7.jpg', location: 'Banff', description: 'Image 7' },
-            { src: './images/image8.jpg', location: 'Banff', description: 'Image 8' },
-            { src: './images/image9.jpg', location: 'Banff', description: 'Image 9' }
+        // City collections (start with Banff; easy to add more cities later)
+        const cityCollections = [
+            {
+                title: 'Beautiful Banff',
+                subtitle: 'A curated collection from Banff National Park',
+                photos: [
+                    { src: './images/image1.jpg', location: 'Banff', description: 'Image 1' },
+                    { src: './images/image2.jpg', location: 'Banff', description: 'Image 2' },
+                    { src: './images/image3.jpg', location: 'Banff', description: 'Image 3' },
+                    { src: './images/image4.jpg', location: 'Banff', description: 'Image 4' },
+                    { src: './images/image5.jpg', location: 'Banff', description: 'Image 5' },
+                    { src: './images/image6.jpg', location: 'Banff', description: 'Image 6' },
+                    { src: './images/image7.jpg', location: 'Banff', description: 'Image 7' },
+                    { src: './images/image8.jpg', location: 'Banff', description: 'Image 8' },
+                    { src: './images/image9.jpg', location: 'Banff', description: 'Image 9' }
+                ]
+            }
         ];
 
-        function openLightbox(index) {
+        // Render city cards with carousels
+        function renderCityCards() {
+            const grid = document.getElementById('cityGrid');
+            grid.innerHTML = '';
+            cityCollections.forEach((city, cityIdx) => {
+                const card = document.createElement('div');
+                card.className = 'city-card';
+
+                const header = document.createElement('div');
+                header.className = 'city-header';
+                header.innerHTML = `<div class="city-title">${city.title}</div><div class="city-subtitle">${city.subtitle}</div>`;
+
+                const carousel = document.createElement('div');
+                carousel.className = 'carousel';
+
+                const viewport = document.createElement('div');
+                viewport.className = 'carousel-viewport';
+
+                const track = document.createElement('div');
+                track.className = 'carousel-track';
+                track.dataset.cityIndex = String(cityIdx);
+                track.dataset.slideIndex = '0';
+
+                city.photos.forEach((p, idx) => {
+                    const slide = document.createElement('div');
+                    slide.className = 'carousel-slide';
+                    slide.innerHTML = `<img src="${p.src}" alt="${city.title} ${idx + 1}">`;
+                    slide.addEventListener('click', () => openLightboxCity(cityIdx, idx));
+                    track.appendChild(slide);
+                });
+
+                viewport.appendChild(track);
+                carousel.appendChild(viewport);
+
+                const nav = document.createElement('div');
+                nav.className = 'carousel-nav';
+                const prev = document.createElement('button');
+                prev.className = 'carousel-btn';
+                prev.innerText = '‹';
+                prev.addEventListener('click', () => moveSlide(cityIdx, -1));
+                const next = document.createElement('button');
+                next.className = 'carousel-btn';
+                next.innerText = '›';
+                next.addEventListener('click', () => moveSlide(cityIdx, 1));
+                nav.appendChild(prev);
+                nav.appendChild(next);
+                carousel.appendChild(nav);
+
+                const counter = document.createElement('div');
+                counter.className = 'carousel-counter';
+                counter.id = `counter-${cityIdx}`;
+                counter.innerText = `1 / ${city.photos.length}`;
+                carousel.appendChild(counter);
+
+                card.appendChild(header);
+                card.appendChild(carousel);
+                grid.appendChild(card);
+            });
+        }
+
+        function moveSlide(cityIdx, delta) {
+            const track = document.querySelector(`.carousel-track[data-city-index="${cityIdx}"]`);
+            if (!track) return;
+            const photosLen = cityCollections[cityIdx].photos.length;
+            const current = Number(track.dataset.slideIndex || '0');
+            let next = current + delta;
+            if (next < 0) next = photosLen - 1;
+            if (next >= photosLen) next = 0;
+            track.dataset.slideIndex = String(next);
+            const offset = -next * 100;
+            track.style.transform = `translateX(${offset}%)`;
+            const counter = document.getElementById(`counter-${cityIdx}`);
+            if (counter) counter.innerText = `${next + 1} / ${photosLen}`;
+        }
+
+        function openLightboxCity(cityIdx, photoIdx) {
             const lightbox = document.getElementById('lightbox');
             const img = document.getElementById('lightbox-img');
             const location = document.getElementById('lightbox-location');
             const description = document.getElementById('lightbox-description');
-
-            img.src = photos[index].src;
-            location.textContent = photos[index].location;
-            description.textContent = photos[index].description;
-
+            const photo = cityCollections[cityIdx].photos[photoIdx];
+            img.src = photo.src;
+            location.textContent = photo.location;
+            description.textContent = photo.description;
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
