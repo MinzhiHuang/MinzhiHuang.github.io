@@ -849,18 +849,18 @@
         // City collections (start with Banff; easy to add more cities later)
         const cityCollections = [
             {
-                title: 'Beautiful Banff',
-                subtitle: 'A curated collection from Banff National Park',
+                title: 'Beautiful Calgary',
+                subtitle: 'Skylines and moments from Calgary',
                 photos: [
-                    { src: './images/image1.jpg', location: 'Banff', description: 'Image 1' },
-                    { src: './images/image2.jpg', location: 'Banff', description: 'Image 2' },
-                    { src: './images/image3.jpg', location: 'Banff', description: 'Image 3' },
-                    { src: './images/image4.jpg', location: 'Banff', description: 'Image 4' },
-                    { src: './images/image5.jpg', location: 'Banff', description: 'Image 5' },
-                    { src: './images/image6.jpg', location: 'Banff', description: 'Image 6' },
-                    { src: './images/image7.jpg', location: 'Banff', description: 'Image 7' },
-                    { src: './images/image8.jpg', location: 'Banff', description: 'Image 8' },
-                    { src: './images/image9.jpg', location: 'Banff', description: 'Image 9' }
+                    { src: './images/calgary-01.jpg', location: 'Calgary', description: 'Image 1' },
+                    { src: './images/calgary-02.jpg', location: 'Calgary', description: 'Image 2' },
+                    { src: './images/calgary-03.jpg', location: 'Calgary', description: 'Image 3' },
+                    { src: './images/calgary-04.jpg', location: 'Calgary', description: 'Image 4' },
+                    { src: './images/calgary-05.jpg', location: 'Calgary', description: 'Image 5' },
+                    { src: './images/calgary-06.jpg', location: 'Calgary', description: 'Image 6' },
+                    { src: './images/calgary-07.jpg', location: 'Calgary', description: 'Image 7' },
+                    { src: './images/calgary-08.jpg', location: 'Calgary', description: 'Image 8' },
+                    { src: './images/calgary-09.jpg', location: 'Calgary', description: 'Image 9' }
                 ]
             }
         ];
@@ -965,6 +965,9 @@
                 closeLightbox();
             }
         });
+
+        // Render city cards on page load
+        document.addEventListener('DOMContentLoaded', renderCityCards);
     </script>
 </body>
 
