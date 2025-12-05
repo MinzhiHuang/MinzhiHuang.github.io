@@ -263,12 +263,32 @@
             /* 略加字重 */
             line-height: 1.65;
             font-style: normal;
+            margin-bottom: 12px;
+        }
+
+        .highlight-current p:last-child {
+            margin-bottom: 0;
         }
 
         .highlight-current strong {
             color: #073b77;
             /* 关键词更深一点 */
             font-weight: 700;
+        }
+
+        .highlight-current a {
+            color: #0984e3;
+            text-decoration: none;
+            border-bottom: 2px solid #0984e3;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-current a:hover {
+            background-color: #0984e3;
+            color: white;
+            padding: 2px 4px;
+            border-radius: 3px;
         }
 
         /* =========================
@@ -1028,14 +1048,29 @@
 
             <!-- ===== Right: latest mini-cards ===== -->
             <div class="hero-right" aria-label="Latest Work Highlights">
-                <!-- "Currently Working On" highlight card (text styles improved) -->
+                <!-- "Recent Activities" highlight card (text styles improved) -->
                 <div class="mini-project-card highlight-current">
-                    <h3>✨ Retail Data Analyst Project</h3>
+                    <h3>🚀 Recent Activities</h3>
+                    <p>
+                        <strong>📚 Research & Learning:</strong> Currently studying more about the <strong>AI and Data market</strong> to stay updated with the latest trends and opportunities.
+                    </p>
+                    <p>
+                        <strong>💻 Vibe Code Demo:</strong> Built a product demo showcasing my development work. Check it out at <a href="https://minzhihuang.lovable.app/" target="_blank" rel="noopener">minzhihuang.lovable.app</a>.
+                    </p>
+                    <p>
+                        <strong>🤖 Automation Project:</strong> Created an automated web scraper that runs daily at <strong>8 AM, 1 PM, and 6 PM</strong> to search for job opportunities and automatically sends all relevant job postings directly to my email inbox.
+                    </p>
+                </div>
+
+                <!-- Retail Data Analyst Project -->
+                <div class="mini-project-card">
+                    <h3>📊 Retail Data Analyst Project</h3>
                     <p>
                         Completed a comprehensive <strong>retail data analysis project</strong> using <strong>SQL</strong> and <strong>Power BI</strong>.
                         Analyzed 60,000+ customer transactions across 30 stores with star schema design.
                     </p>
-                    <a href="https://github.com/MinzhiHuang/Retail_Data_Analyst" class="mini-project-link" target="_blank" rel="noopener">
+                    <a href="https://github.com/MinzhiHuang/Retail_Data_Analyst" class="mini-project-link"
+                        target="_blank" rel="noopener">
                         View on GitHub →
                     </a>
                 </div>
@@ -1094,13 +1129,18 @@
             <div class="recent-activities-section">
                 <div class="activities-content">
                     <p class="activity-item">
-                        <strong>📚 Research & Learning:</strong> Currently studying more about the <strong>AI and Data market</strong> to stay updated with the latest trends and opportunities.
+                        <strong>📚 Research & Learning:</strong> Currently studying more about the <strong>AI and Data
+                            market</strong> to stay updated with the latest trends and opportunities.
                     </p>
                     <p class="activity-item">
-                        <strong>💻 Vibe Code Demo:</strong> Built a product demo showcasing my development work. Check it out at <a href="https://minzhihuang.lovable.app/" target="_blank" rel="noopener">minzhihuang.lovable.app</a>.
+                        <strong>💻 Vibe Code Demo:</strong> Built a product demo showcasing my development work. Check
+                        it out at <a href="https://minzhihuang.lovable.app/" target="_blank"
+                            rel="noopener">minzhihuang.lovable.app</a>.
                     </p>
                     <p class="activity-item">
-                        <strong>🤖 Automation Project:</strong> Created an automated web scraper that runs daily at <strong>8 AM, 1 PM, and 6 PM</strong> to search for job opportunities and automatically sends all relevant job postings directly to my email inbox.
+                        <strong>🤖 Automation Project:</strong> Created an automated web scraper that runs daily at
+                        <strong>8 AM, 1 PM, and 6 PM</strong> to search for job opportunities and automatically sends
+                        all relevant job postings directly to my email inbox.
                     </p>
                 </div>
             </div>
@@ -1109,7 +1149,7 @@
         <!-- Data Analyst Work -->
         <section class="content-section" id="data-analyst">
             <h2 class="section-title"><span class="emoji">📊</span><span class="text">Data Analyst Work</span></h2>
-            
+
             <!-- Retail Data Analyst Project -->
             <div class="project-card">
                 <div class="featured-badge">⭐ Featured Project</div>
@@ -1121,9 +1161,12 @@
                     </div>
                 </div>
                 <div class="project-description">
-                    A comprehensive retail data analysis project analyzing 60,000+ customer transactions across 30 stores. 
-                    Implemented a star schema design for optimized analytical performance, performed data quality checks and cleaning, 
-                    and created interactive dashboards using Power BI. The dataset includes customer demographics, transaction metrics, 
+                    A comprehensive retail data analysis project analyzing 60,000+ customer transactions across 30
+                    stores.
+                    Implemented a star schema design for optimized analytical performance, performed data quality checks
+                    and cleaning,
+                    and created interactive dashboards using Power BI. The dataset includes customer demographics,
+                    transaction metrics,
                     and store information with detailed SQL analysis.
                 </div>
                 <div class="tech-stack">
@@ -1138,7 +1181,8 @@
                     </div>
                 </div>
                 <div class="project-links">
-                    <a href="https://github.com/MinzhiHuang/Retail_Data_Analyst" class="project-link" target="_blank" rel="noopener">💻 GitHub Repository</a>
+                    <a href="https://github.com/MinzhiHuang/Retail_Data_Analyst" class="project-link" target="_blank"
+                        rel="noopener">💻 GitHub Repository</a>
                 </div>
             </div>
         </section>
