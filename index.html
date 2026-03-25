@@ -4,1310 +4,1059 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Minzhi Huang - Data Analyst & AI Engineer</title>
+    <title>Minzhi Huang — AI Engineer & Automation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* =========================
-           Base reset & typography
-           ========================= */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* =============================================
+           RESET & TOKENS
+           ============================================= */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --white:       #ffffff;
+            --off-white:   #f7f6f3;
+            --border:      #e4e3de;
+            --border-dark: #c8c6bf;
+            --ink:         #111110;
+            --ink-2:       #3d3d3b;
+            --ink-3:       #6b6b68;
+            --ink-4:       #9b9a96;
+            --sidebar-w:   280px;
+            --font-serif:  'Playfair Display', Georgia, 'Times New Roman', serif;
+            --font-sans:   'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: var(--font-sans);
+            background: var(--white);
+            color: var(--ink);
             line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* =========================
-           Hero (split layout, animated bg)
-           ========================= */
-        .hero {
-            min-height: 100vh;
-            background:
-                radial-gradient(circle at 20% 80%, rgba(116, 185, 255, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(0, 184, 148, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(9, 132, 227, 0.15) 0%, transparent 50%),
-                linear-gradient(135deg, #74b9ff 0%, #0984e3 50%, #00b894 100%);
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            overflow: hidden;
-            padding: 120px 50px 80px;
-        }
+        a { color: inherit; text-decoration: none; }
 
-        /* Decorative SVG overlay (animated) */
-        .hero::before {
+        /* Top accent stripe */
+        body::before {
             content: '';
-            position: absolute;
-            inset: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="200" cy="150" r="4" fill="%23ffffff" opacity="0.9"/><circle cx="350" cy="200" r="6" fill="%2374b9ff" opacity="0.8"/><circle cx="500" cy="180" r="5" fill="%2300b894" opacity="0.7"/><line x1="200" y1="150" x2="350" y2="200" stroke="%23ffffff" stroke-width="1" opacity="0.3"/><line x1="350" y1="200" x2="500" y2="180" stroke="%2374b9ff" stroke-width="1" opacity="0.25"/></svg>');
-            animation: dataFlow 25s linear infinite;
-            z-index: 0;
-        }
-
-        /* Decorative chart line (animated pulse) */
-        .hero::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><path d="M 100 800 Q 200 700 300 750 T 500 650" stroke="%2374b9ff" stroke-width="2" fill="none" opacity="0.6"/><rect x="120" y="850" width="15" height="80" fill="%2374b9ff" opacity="0.4"/></svg>');
-            animation: chartPulse 20s ease-in-out infinite;
-            z-index: 0;
-        }
-
-        .data-particles {
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .data-particles::before {
-            content: '';
-            position: absolute;
-            top: 20%;
-            left: 10%;
-            width: 8px;
-            height: 8px;
-            background: #74b9ff;
-            border-radius: 50%;
-            box-shadow:
-                0 0 10px rgba(116, 185, 255, 0.8),
-                200px 50px 0 -2px rgba(0, 184, 148, 0.6),
-                400px 100px 0 -1px rgba(255, 255, 255, 0.7);
-            animation: particleFlow 30s linear infinite;
-        }
-
-        @keyframes dataFlow {
-
-            0%,
-            100% {
-                transform: translateX(0) translateY(0);
-                opacity: 0.8;
-            }
-
-            50% {
-                transform: translateX(0) translateY(-20px);
-                opacity: 0.9;
-            }
-        }
-
-        @keyframes chartPulse {
-
-            0%,
-            100% {
-                transform: scale(1) translateY(0);
-                opacity: 0.7;
-            }
-
-            50% {
-                transform: scale(1.02) translateY(-5px);
-                opacity: 0.9;
-            }
-        }
-
-        @keyframes particleFlow {
-            0% {
-                transform: translateX(-50px) translateY(0);
-                opacity: 0;
-            }
-
-            10%,
-            90% {
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateX(100vw) translateY(-100px);
-                opacity: 0;
-            }
-        }
-
-        /* =========================
-           Two-column container
-           ========================= */
-        .hero-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            max-width: 1400px;
-            width: 100%;
-            align-items: start;
-            z-index: 2;
-        }
-
-        .hero-left {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .hero-right {
-            padding: 0;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        /* Custom scrollbar for the right column */
-        .hero-right::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .hero-right::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .hero-right::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
-        }
-
-        .hero-right::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.5);
-        }
-
-        /* =========================
-           Mini project cards (right column)
-           ========================= */
-        .latest-section-title {
-            display: none;
-        }
-
-        .mini-project-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .mini-project-card:hover {
-            transform: translateX(5px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .mini-project-card h3 {
-            font-size: 1.1rem;
-            color: white;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .mini-project-card p {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-
-        .mini-project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            color: white;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            opacity: 0.9;
-        }
-
-        .mini-project-link:hover {
-            opacity: 1;
-            gap: 8px;
-        }
-
-        /* =========================
-           Highlight "Currently Working On" card
-           - Blue glass card (you already use)
-           - BELOW we ONLY tune text for readability
-           ========================= */
-        .highlight-current {
-            /* 保持蓝色玻璃卡片风格（白色微透明 + 蓝色边框） */
-            background: rgba(255, 255, 255, 0.92);
-            border: 1px solid rgba(116, 185, 255, 0.35);
-            border-radius: 14px;
-            box-shadow: 0 10px 30px rgba(13, 64, 125, 0.12);
-            color: #0f2a3d;
-            /* 深一点的正文色 */
-            font-style: normal;
-            /* 取消斜体，增强可读性 */
-        }
-
-        .highlight-current h3 {
-            /* 用纯色标题替代渐变，增强对比度 */
-            background: none;
-            -webkit-text-fill-color: initial;
-            color: #0a3d62;
-            /* 深蓝标题 */
-            font-weight: 800;
-            letter-spacing: .2px;
-            margin-bottom: 8px;
-        }
-
-        .highlight-current p {
-            color: rgba(13, 38, 59, 0.92);
-            /* 正文更高对比度 */
-            font-weight: 500;
-            /* 略加字重 */
-            line-height: 1.65;
-            font-style: normal;
-            margin-bottom: 12px;
-        }
-
-        .highlight-current p:last-child {
-            margin-bottom: 0;
-        }
-
-        .highlight-current strong {
-            color: #073b77;
-            /* 关键词更深一点 */
-            font-weight: 700;
-        }
-
-        .highlight-current a {
-            color: #0984e3;
-            text-decoration: none;
-            border-bottom: 2px solid #0984e3;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .highlight-current a:hover {
-            background-color: #0984e3;
-            color: white;
-            padding: 2px 4px;
-            border-radius: 3px;
-        }
-
-        /* =========================
-           Navigation (sticky, glass)
-           ========================= */
-        .nav {
+            display: block;
+            height: 3px;
+            background: var(--ink);
             position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 15px 50px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            z-index: 1000;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            top: 0; left: 0; right: 0;
+            z-index: 2000;
         }
 
-        .nav.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            color: #333;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            border-bottom: 1px solid rgba(116, 185, 255, 0.2);
-        }
-
-        .nav.scrolled .nav-links a {
-            color: #333;
-        }
-
-        .nav-container {
+        /* =============================================
+           LAYOUT: SIDEBAR + MAIN
+           ============================================= */
+        .layout {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
+            min-height: 100vh;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: inherit;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: none;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            transform: translateY(-2px);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: currentColor;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* =========================
-           Hero left content
-           ========================= */
-        .hero-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: 2;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .profile-image {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            margin: 0 auto 30px;
-            background: linear-gradient(45deg, #74b9ff, #0984e3, #00b894);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow:
-                0 20px 40px rgba(0, 0, 0, 0.3),
-                0 0 0 4px rgba(116, 185, 255, 0.3),
-                0 0 0 8px rgba(116, 185, 255, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .profile-image:hover {
-            transform: scale(1.05);
-            box-shadow:
-                0 25px 50px rgba(0, 0, 0, 0.4),
-                0 0 0 4px rgba(116, 185, 255, 0.5),
-                0 0 0 8px rgba(116, 185, 255, 0.2);
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, #fff, #f0f0f0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero .subtitle {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-            font-weight: 600;
-            color: #f0f0f0;
-        }
-
-        .hero .description {
-            font-size: 1rem;
-            opacity: 0.9;
-            margin-bottom: 40px;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* CTA buttons */
-        .hero-buttons {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            flex-wrap: wrap;
-            max-width: 550px;
-            margin: 0 auto 30px;
-        }
-
-        .btn {
-            padding: 10px 18px;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            font-size: 0.85rem;
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
-            color: white;
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        /* Resume dropdown */
-        .resume-dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .resume-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .dropdown-arrow {
-            transition: transform 0.3s ease;
-            font-size: 0.7rem;
-        }
-
-        .resume-dropdown.active .dropdown-arrow {
-            transform: rotate(180deg);
-        }
-
-        .resume-options {
-            position: absolute;
-            top: calc(100% + 10px);
-            left: 50%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            min-width: 200px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateX(-50%) translateY(-10px);
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .resume-dropdown.active .resume-options {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        .resume-option {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 18px;
-            color: #2d3436;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            border-radius: 15px;
-            margin: 5px;
-        }
-
-        .resume-option:hover {
-            background: linear-gradient(45deg, #74b9ff, #0984e3);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Skills row (chips) */
-        .skills-preview {
-            margin-bottom: 20px;
-            display: flex;
-            gap: 8px;
-            justify-content: center;
-            flex-wrap: wrap;
-            z-index: 2;
-        }
-
-        .skill-badge {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 6px 14px;
-            border-radius: 25px;
-            color: white;
-            font-size: 0.8rem;
-            font-weight: 500;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .skill-badge:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
-        }
-
-        /* Scroll hint arrow */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-            color: white;
-            opacity: 0.7;
-            z-index: 2;
-        }
-
-        @keyframes bounce {
-
-            0%,
-            20%,
-            50%,
-            80%,
-            100% {
-                transform: translateX(-50%) translateY(0);
-            }
-
-            40% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-
-            60% {
-                transform: translateX(-50%) translateY(-5px);
-            }
-        }
-
-        /* =========================
-           Content sections (second page)
-           ========================= */
-        .content-section {
-            padding: 40px 50px;
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: left;
-        }
-
-        .section-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 28px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .section-title .emoji {
-            font-size: 2.2rem;
-        }
-
-        .section-title .text {
-            background: linear-gradient(45deg, #0984e3, #00b894);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Project card (detailed) */
-        .project-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(116, 185, 255, 0.2);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(45deg, #74b9ff, #0984e3, #00b894);
-        }
-
-        .project-header {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .project-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(45deg, #74b9ff, #0984e3);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
+        /* =============================================
+           SIDEBAR
+           ============================================= */
+        .sidebar {
+            width: var(--sidebar-w);
             flex-shrink: 0;
-        }
-
-        .project-info h3 {
-            font-size: 1.4rem;
-            color: #2d3436;
-            margin-bottom: 5px;
-            font-weight: 700;
-        }
-
-        .project-type {
-            color: #636e72;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .project-description {
-            color: #2d3436;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            font-size: 1rem;
-        }
-
-        .tech-stack {
-            margin-bottom: 25px;
-        }
-
-        .tech-stack h4 {
-            color: #00b894;
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .tech-tag {
-            background: linear-gradient(135deg, #00b894, #00a085);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 8px 16px;
-            background: linear-gradient(45deg, #74b9ff, #0984e3);
-            color: white;
-            text-decoration: none;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .project-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(116, 185, 255, 0.4);
-        }
-
-        .project-link.secondary {
-            background: linear-gradient(45deg, #636e72, #2d3436);
-        }
-
-        .featured-badge {
-            display: inline-block;
-            background: linear-gradient(45deg, #fdcb6e, #e17055);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-
-        /* Recent Activities Section */
-        .recent-activities-section {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(116, 185, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .recent-activities-section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .recent-activities-title {
-            font-size: 1.8rem;
-            color: #0984e3;
-            margin-bottom: 20px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .activities-content {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            background: var(--off-white);
+            border-right: 1px solid var(--border);
             display: flex;
             flex-direction: column;
+            padding: 32px 28px;
             gap: 18px;
         }
 
-        .activity-item {
-            font-size: 1rem;
-            color: #2d3436;
-            line-height: 1.7;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(116, 185, 255, 0.1);
+        .sidebar::-webkit-scrollbar { width: 0; }
+
+        /* Profile photo */
+        .profile-photo {
+            width: 200px;
+            height: 240px;
+            border-radius: 12px;
+            object-fit: cover;
+            object-position: center 0%;
+            border: 1px solid var(--border);
+            display: block;
+            margin: 0 auto;
         }
 
-        .activity-item:last-child {
-            border-bottom: none;
+        /* Name & title block */
+        .sidebar-name {
+            font-family: var(--font-serif);
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: var(--ink);
+            line-height: 1.2;
+            margin-bottom: 6px;
+            letter-spacing: -0.3px;
         }
 
-        .activity-item a {
-            color: #0984e3;
-            text-decoration: none;
+        .sidebar-title {
+            font-size: 0.78rem;
+            color: var(--ink-3);
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            line-height: 1.5;
+        }
+
+        /* Status tag */
+        .status-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: var(--ink-3);
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 4px 10px;
+            margin-top: 10px;
+            width: fit-content;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #3d9970;
+            flex-shrink: 0;
+        }
+
+        /* Divider */
+        .sidebar-divider {
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* Sidebar navigation */
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .sidebar-nav-label {
+            font-size: 0.68rem;
             font-weight: 600;
-            border-bottom: 2px solid #0984e3;
-            transition: all 0.3s ease;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--ink-4);
+            margin-bottom: 8px;
         }
 
-        .activity-item a:hover {
-            background-color: #0984e3;
-            color: white;
-            padding: 2px 4px;
-            border-radius: 3px;
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 10px;
+            border-radius: 6px;
+            font-size: 0.83rem;
+            font-weight: 500;
+            color: var(--ink-3);
+            transition: background 0.2s ease, color 0.2s ease;
         }
 
-        /* Coming soon block */
-        .coming-soon {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(116, 185, 255, 0.3);
-            border-radius: 20px;
-            padding: 60px 40px;
-            margin: 20px 0;
+        .sidebar-nav a:hover {
+            background: var(--border);
+            color: var(--ink);
+        }
+
+        .sidebar-nav a.active {
+            background: var(--ink);
+            color: var(--white);
+        }
+
+        .nav-icon {
+            font-size: 0.9rem;
+            width: 16px;
             text-align: center;
-            box-shadow: 0 8px 25px rgba(0, 184, 148, 0.15);
-            transition: all 0.3s ease;
+            flex-shrink: 0;
         }
 
-        .coming-soon:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0, 184, 148, 0.25);
+        /* Contact links */
+        .sidebar-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
-        .coming-soon h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            background: linear-gradient(45deg, #74b9ff, #00b894);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.78rem;
+            color: var(--ink-3);
+            transition: color 0.2s ease;
         }
 
-        .coming-soon p {
-            font-size: 1.1rem;
-            color: #2d3436;
+        .contact-link:hover { color: var(--ink); }
+
+        .contact-icon {
+            width: 14px;
+            text-align: center;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        /* Skills */
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .skill-pill {
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: var(--ink-2);
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 3px 9px;
+            transition: border-color 0.2s ease;
+        }
+
+        .skill-pill:hover { border-color: var(--ink); }
+
+        /* Resume buttons */
+        .resume-group {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .resume-btn-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            letter-spacing: 0.02em;
+        }
+
+        .resume-btn-primary {
+            background: var(--ink);
+            color: var(--white);
+        }
+
+        .resume-btn-primary:hover {
+            background: var(--ink-2);
+        }
+
+        .resume-btn-secondary {
+            background: transparent;
+            color: var(--ink-2);
+            border: 1px solid var(--border-dark);
+        }
+
+        .resume-btn-secondary:hover {
+            background: var(--border);
+            border-color: var(--ink);
+        }
+
+        /* Sidebar footer */
+        .sidebar-footer {
+            margin-top: auto;
+            font-size: 0.68rem;
+            color: var(--ink-4);
             line-height: 1.6;
         }
 
-        /* BG wrapper for second page */
-        .content-background {
-            background: linear-gradient(135deg, #e3f2fd 0%, #f0f8ff 40%, #f5fbff 70%, #e8f5e8 100%);
-            min-height: 100vh;
-            padding: 40px 0;
+        /* =============================================
+           MAIN CONTENT
+           ============================================= */
+        .main {
+            flex: 1;
+            min-width: 0;
+            padding: 64px 72px;
+            max-width: 860px;
         }
 
-        /* =========================
-           Responsive
-           ========================= */
-        @media (max-width: 968px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .hero-right {
-                max-height: none;
-            }
+        /* Section spacing */
+        .content-section {
+            padding-bottom: 64px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 64px;
         }
 
-        @media (max-width: 768px) {
-            .hero {
-                padding: 100px 20px 60px;
+        .content-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        /* Section header */
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+
+        .section-number {
+            font-family: var(--font-serif);
+            font-size: 0.95rem;
+            color: var(--ink-4);
+            font-style: italic;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 1.65rem;
+            font-weight: 700;
+            color: var(--ink);
+            letter-spacing: -0.5px;
+        }
+
+        /* ===== HERO / INTRO ===== */
+        .hero-heading {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--ink);
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 12px;
+        }
+
+        .hero-sub {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--ink-3);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .hero-bio {
+            font-size: 1.05rem;
+            color: var(--ink-2);
+            line-height: 1.85;
+            max-width: 580px;
+            font-weight: 300;
+            margin-bottom: 36px;
+        }
+
+        .hero-bio strong {
+            color: var(--ink);
+            font-weight: 500;
+        }
+
+        /* CTA row in hero */
+        .hero-ctas {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 11px 22px;
+            border-radius: 6px;
+            font-size: 0.83rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            letter-spacing: 0.02em;
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-sans);
+        }
+
+        .cta-solid {
+            background: var(--ink);
+            color: var(--white);
+        }
+
+        .cta-solid:hover {
+            background: var(--ink-2);
+            transform: translateY(-1px);
+        }
+
+        .cta-outline {
+            background: transparent;
+            color: var(--ink);
+            border: 1px solid var(--border-dark);
+        }
+
+        .cta-outline:hover {
+            border-color: var(--ink);
+            background: var(--off-white);
+            transform: translateY(-1px);
+        }
+
+        /* Jump links row */
+        .jump-links {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .jump-link {
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--ink-3);
+            text-decoration: underline;
+            text-decoration-color: var(--border);
+            text-underline-offset: 3px;
+            transition: all 0.2s ease;
+        }
+
+        .jump-link:hover {
+            color: var(--ink);
+            text-decoration-color: var(--ink);
+        }
+
+        /* ===== ACTIVITY SECTION ===== */
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .activity-item {
+            display: flex;
+            gap: 18px;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .activity-item:first-child { padding-top: 0; }
+        .activity-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+        .activity-icon {
+            font-size: 1.1rem;
+            width: 24px;
+            flex-shrink: 0;
+            padding-top: 2px;
+            text-align: center;
+        }
+
+        .activity-text {
+            font-size: 0.92rem;
+            color: var(--ink-2);
+            line-height: 1.75;
+        }
+
+        .activity-text strong {
+            color: var(--ink);
+            font-weight: 600;
+        }
+
+        .activity-text a {
+            color: var(--ink);
+            text-decoration: underline;
+            text-decoration-color: var(--border-dark);
+            text-underline-offset: 2px;
+            transition: text-decoration-color 0.2s;
+        }
+
+        .activity-text a:hover {
+            text-decoration-color: var(--ink);
+        }
+
+        /* ===== PROJECT CARDS ===== */
+        .project-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 28px 30px;
+            margin-bottom: 16px;
+            background: var(--white);
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            border-color: var(--ink);
+            box-shadow: 4px 4px 0 var(--ink);
+        }
+
+        .project-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 10px;
+        }
+
+        .project-badge {
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ink-4);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 3px 8px;
+            white-space: nowrap;
+        }
+
+        .project-title {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 5px;
+            line-height: 1.3;
+        }
+
+        .project-meta {
+            font-size: 0.78rem;
+            color: var(--ink-4);
+            font-weight: 500;
+            margin-bottom: 14px;
+        }
+
+        .project-desc {
+            font-size: 0.88rem;
+            color: var(--ink-2);
+            line-height: 1.8;
+            margin-bottom: 18px;
+            font-weight: 300;
+        }
+
+        .project-desc strong {
+            color: var(--ink);
+            font-weight: 500;
+        }
+
+        .tech-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 18px;
+        }
+
+        .tech-chip {
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: var(--ink-3);
+            background: var(--off-white);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 3px 9px;
+        }
+
+        .project-links-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .proj-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: all 0.2s ease;
+        }
+
+        .proj-link-solid {
+            background: var(--ink);
+            color: var(--white);
+        }
+
+        .proj-link-solid:hover {
+            background: var(--ink-2);
+        }
+
+        .proj-link-outline {
+            color: var(--ink-2);
+            border: 1px solid var(--border-dark);
+        }
+
+        .proj-link-outline:hover {
+            border-color: var(--ink);
+            background: var(--off-white);
+        }
+
+        /* ===== COMING SOON ===== */
+        .coming-block {
+            border: 1px dashed var(--border-dark);
+            border-radius: 8px;
+            padding: 48px 36px;
+            text-align: center;
+            color: var(--ink-4);
+            background: var(--off-white);
+            transition: border-color 0.25s ease;
+        }
+
+        .coming-block:hover {
+            border-color: var(--ink-3);
+        }
+
+        .coming-block p {
+            font-size: 0.88rem;
+            line-height: 1.7;
+            margin-top: 6px;
+        }
+
+        .coming-title {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            color: var(--ink-3);
+        }
+
+        /* =============================================
+           MOBILE NAV (top bar, hidden on desktop)
+           ============================================= */
+        .mobile-nav {
+            display: none;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 20px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mobile-logo {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .mobile-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .mobile-links a {
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--ink-3);
+            transition: color 0.2s;
+        }
+
+        .mobile-links a:hover { color: var(--ink); }
+
+        /* =============================================
+           RESPONSIVE
+           ============================================= */
+        @media (max-width: 900px) {
+            .layout { flex-direction: column; }
+
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding: 36px 24px;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 24px;
+                display: none; /* hidden on mobile, use top nav */
             }
 
-            .hero-right {
-                padding: 25px;
+            .mobile-nav { display: flex; }
+
+            .main {
+                padding: 40px 24px;
+                max-width: 100%;
             }
 
-            .hero h1 {
-                font-size: 2.5rem;
-            }
+            .hero-heading { font-size: 2.2rem; }
+        }
 
-            .hero .subtitle {
-                font-size: 1.2rem;
-            }
-
-            .profile-image {
-                width: 150px;
-                height: 150px;
-            }
-
-            .content-section {
-                padding: 30px 20px;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .nav {
-                padding: 15px 20px;
-            }
-
-            .nav-links {
-                gap: 15px;
-                font-size: 0.85rem;
-            }
-
-            .hero-buttons {
-                gap: 8px;
-            }
-
-            .btn {
-                padding: 8px 14px;
-                font-size: 0.75rem;
-            }
-
-            .skills-preview {
-                gap: 6px;
-            }
-
-            .project-card {
-                padding: 25px 20px;
-            }
-
-            .project-header {
-                flex-direction: column;
-                gap: 10px;
-            }
+        @media (max-width: 600px) {
+            .main { padding: 28px 18px; }
+            .hero-heading { font-size: 1.85rem; }
+            .section-title { font-size: 1.35rem; }
+            .project-card { padding: 20px; }
         }
     </style>
 </head>
 
 <body>
-    <!-- =========================
-         Navigation (sticky)
-         ========================= -->
-    <nav class="nav" id="navbar" aria-label="Primary">
-        <div class="nav-container">
-            <a href="#home" class="logo">MH</a>
-            <ul class="nav-links">
-                <li><a href="#home">HOME</a></li>
-                <li><a href="./about.html">ABOUT</a></li>
-                <li><a href="./project.html">PROJECTS</a></li>
-                <li><a href="./blog.html">BLOG</a></li>
-            </ul>
+
+    <!-- Mobile top nav (only visible on small screens) -->
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+        <span class="mobile-logo">Minzhi Huang</span>
+        <div class="mobile-links">
+            <a href="./about.html">About</a>
+            <a href="./project.html">Projects</a>
+            <a href="./blog.html">Blog</a>
         </div>
     </nav>
 
-    <!-- =========================
-         Hero (first screen)
-         ========================= -->
-    <section class="hero" id="home">
-        <div class="data-particles" aria-hidden="true"></div>
+    <div class="layout">
 
-        <div class="hero-container">
-            <!-- ===== Left: profile & CTAs ===== -->
-            <div class="hero-left">
-                <div class="hero-content">
-                    <div class="profile-image" aria-hidden="true">
-                        <img src="./images/profile.jpg" alt="Minzhi Huang"
-                            style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" />
-                    </div>
+        <!-- =============================================
+             SIDEBAR
+             ============================================= -->
+        <aside class="sidebar" aria-label="Profile sidebar">
 
-                    <h1>Minzhi Huang</h1>
-                    <div class="subtitle">Data Analyst & AI Engineer</div>
-                    <p class="description">
-                        Transforming complex data into actionable business insights through statistical analysis,
-                        interactive dashboards, and intelligent AI solutions that drive measurable impact across
-                        organizations.
-                    </p>
+            <!-- Photo -->
+            <img src="./images/profile.jpg" alt="Minzhi Huang" class="profile-photo" />
 
-                    <!-- Action buttons -->
-                    <div class="hero-buttons">
-                        <a href="#data-analyst" class="btn btn-primary">Data Analyst Work</a>
-                        <a href="#data-scientist" class="btn btn-primary">Data Scientist Work</a>
-                        <a href="#nlp-ai" class="btn btn-primary">NLP/AI Work</a>
-
-                        <!-- Resume dropdown -->
-                        <div class="resume-dropdown">
-                            <button class="btn btn-secondary resume-btn" onclick="toggleResumeDropdown()"
-                                aria-haspopup="true" aria-expanded="false">
-                                Download Resume <span class="dropdown-arrow">▼</span>
-                            </button>
-                            <div class="resume-options" id="resumeOptions" role="menu">
-                                <a href="./resume/Minzhi_Resume_Data_Analyst.pdf" class="resume-option" download
-                                    role="menuitem">
-                                    Data Analyst Resume
-                                </a>
-                                <a href="./resume/Minzhi_Resume_AI_Engineer.pdf" class="resume-option" download
-                                    role="menuitem">
-                                    AI Engineer Resume
-                                </a>
-                            </div>
-                        </div>
-
-                        <a href="mailto:huangminzxx@gmail.com" class="btn btn-secondary">Let's Connect</a>
-                    </div>
-
-                    <!-- Skills chips -->
-                    <div class="skills-preview" aria-label="Skills">
-                        <div class="skill-badge">Python</div>
-                        <div class="skill-badge">LangChain</div>
-                        <div class="skill-badge">PowerBI</div>
-                        <div class="skill-badge">Tableau</div>
-                        <div class="skill-badge">FastAPI</div>
-                        <div class="skill-badge">SQL</div>
-                        <div class="skill-badge">R</div>
-                    </div>
+            <!-- Identity -->
+            <div>
+                <div class="sidebar-name">Minzhi Huang</div>
+                <div class="sidebar-title">AI Engineer &amp; Automation Builder<br>Vancouver, BC</div>
+                <div class="status-tag">
+                    <span class="status-dot"></span>
+                    Open to opportunities
                 </div>
             </div>
 
-            <!-- ===== Right: latest mini-cards ===== -->
-            <div class="hero-right" aria-label="Latest Work Highlights">
-                <!-- "Recent Activities" highlight card (text styles improved) -->
-                <div class="mini-project-card highlight-current">
-                    <h3>🚀 Recent Activities</h3>
-                    <p>
-                        <strong>📚 Research & Learning:</strong> Currently studying more about the <strong>AI and Data
-                            market</strong> to stay updated with the latest trends and opportunities.
-                    </p>
-                    <p>
-                        <strong>💻 Vibe Code Demo:</strong> Built a product demo showcasing my development work. Check
-                        it out at <a href="https://minzhihuang.lovable.app/" target="_blank"
-                            rel="noopener">minzhihuang.lovable.app</a>.
-                    </p>
-                    <p>
-                        <strong>🤖 Automation Project:</strong> Created an automated web scraper that runs daily at
-                        <strong>8 AM, 1 PM, and 6 PM</strong> to search for job opportunities and automatically sends
-                        all relevant job postings directly to my email inbox.
-                    </p>
+            <!-- Resume (top position) -->
+            <a href="./resume/Minzhi_AI_Resume.pdf" class="resume-btn-link resume-btn-primary" download>
+                ↓ Download Resume
+            </a>
+
+            <div class="sidebar-divider"></div>
+
+            <!-- Navigation -->
+            <nav class="sidebar-nav" aria-label="Section navigation">
+                <div class="sidebar-nav-label">On this page</div>
+                <a href="#intro" class="active">
+                    <span class="nav-icon">👤</span> Introduction
+                </a>
+                <a href="#recent">
+                    <span class="nav-icon">🚀</span> Recent Activities
+                </a>
+                <a href="#ai-automation">
+                    <span class="nav-icon">⚙️</span> AI Automation
+                </a>
+                <a href="#ai-engineer">
+                    <span class="nav-icon">🤖</span> AI Engineer
+                </a>
+                <a href="#nlp-ai">
+                    <span class="nav-icon">📝</span> NLP / AI Research
+                </a>
+                <a href="#blog-preview">
+                    <span class="nav-icon">✍️</span> Blog
+                </a>
+            </nav>
+
+            <div class="sidebar-divider"></div>
+
+            <!-- Contact -->
+            <div class="sidebar-contact">
+                <div class="sidebar-nav-label">Contact</div>
+                <a href="mailto:huangminzxx@gmail.com" class="contact-link">
+                    <span class="contact-icon">✉</span>
+                    huangminzxx@gmail.com
+                </a>
+                <a href="https://github.com/MinzhiHuang" target="_blank" rel="noopener" class="contact-link">
+                    <span class="contact-icon">⌥</span>
+                    github.com/MinzhiHuang
+                </a>
+                <a href="https://minzhihuang.lovable.app/" target="_blank" rel="noopener" class="contact-link">
+                    <span class="contact-icon">⬡</span>
+                    minzhihuang.lovable.app
+                </a>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            <!-- Skills -->
+            <div>
+                <div class="sidebar-nav-label" style="margin-bottom:10px;">Skills</div>
+                <div class="skill-list">
+                    <span class="skill-pill">Python</span>
+                    <span class="skill-pill">LangChain</span>
+                    <span class="skill-pill">FastAPI</span>
+                    <span class="skill-pill">NLP</span>
+                    <span class="skill-pill">LLMs</span>
+                    <span class="skill-pill">Automation</span>
+                    <span class="skill-pill">Web Scraping</span>
+                    <span class="skill-pill">SQL</span>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="sidebar-footer">
+                <p>© 2025 Minzhi Huang</p>
+            </div>
+
+        </aside>
+
+        <!-- =============================================
+             MAIN CONTENT
+             ============================================= -->
+        <main class="main">
+
+            <!-- ── INTRO ── -->
+            <section class="content-section" id="intro">
+                <h1 class="hero-heading">AI Engineer<br>&amp; Automation Builder.</h1>
+                <div class="hero-sub">MDS Computational Linguistics · UBC &nbsp;|&nbsp; Statistics · SFU</div>
+
+                <p class="hero-bio">
+                    I build <strong>intelligent systems and automation pipelines</strong> that eliminate repetitive work and unlock the power of AI at scale. From <strong>LLM-powered applications</strong> to automated workflows and NLP research — I turn ideas into working tools that run while you sleep.
+                </p>
+
+                <div class="hero-ctas">
+                    <a href="#ai-automation" class="cta-btn cta-solid">View Projects</a>
+                    <a href="./about.html" class="cta-btn cta-outline">About Me</a>
+                    <a href="mailto:huangminzxx@gmail.com" class="cta-btn cta-outline">Get in Touch</a>
                 </div>
 
-                <!-- Retail Data Analyst Project -->
-                <div class="mini-project-card">
-                    <h3>📊 Retail Data Analyst Project</h3>
-                    <p>
-                        Completed a comprehensive <strong>retail data analysis project</strong> using
-                        <strong>SQL</strong> and <strong>Power BI</strong>.
-                        Analyzed 60,000+ customer transactions across 30 stores with star schema design.
+                <div class="jump-links">
+                    <a href="#ai-automation" class="jump-link">→ AI Automation</a>
+                    <a href="#ai-engineer" class="jump-link">→ AI Engineer Work</a>
+                    <a href="#nlp-ai" class="jump-link">→ NLP / AI Research</a>
+                </div>
+            </section>
+
+            <!-- ── RECENT ACTIVITIES ── -->
+            <section class="content-section" id="recent">
+                <div class="section-header">
+                    <span class="section-number">01</span>
+                    <h2 class="section-title">Recent Activities</h2>
+                </div>
+
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <span class="activity-icon">📚</span>
+                        <p class="activity-text">
+                            <strong>Research &amp; Learning —</strong> Currently studying developments in the <strong>AI and Data market</strong> to stay updated with the latest trends and emerging opportunities.
+                        </p>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">💻</span>
+                        <p class="activity-text">
+                            <strong>Vibe Code Demo —</strong> Built a product demo showcasing full-stack development work. Available at <a href="https://minzhihuang.lovable.app/" target="_blank" rel="noopener">minzhihuang.lovable.app</a>.
+                        </p>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">🤖</span>
+                        <p class="activity-text">
+                            <strong>Automation Project —</strong> Created an automated web scraper running daily at <strong>8 AM, 1 PM, and 6 PM</strong> to search for relevant job postings and deliver them directly to my inbox.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── AI AUTOMATION ── -->
+            <section class="content-section" id="ai-automation">
+                <div class="section-header">
+                    <span class="section-number">02</span>
+                    <h2 class="section-title">AI Automation</h2>
+                </div>
+
+                <!-- Job Scraper -->
+                <div class="project-card">
+                    <div class="project-top">
+                        <div>
+                            <div class="project-title">Automated Job Opportunity Pipeline</div>
+                            <div class="project-meta">Web Scraping · Automation · Scheduling · Email Delivery</div>
+                        </div>
+                        <span class="project-badge">Live</span>
+                    </div>
+                    <p class="project-desc">
+                        Built a fully automated job search pipeline that runs on a <strong>scheduled cron</strong> at 8 AM, 1 PM, and 6 PM daily. The system scrapes relevant job postings across multiple platforms, filters by role and location criteria, and delivers a curated digest directly to my inbox — eliminating hours of manual searching every week.
                     </p>
-                    <a href="https://github.com/MinzhiHuang/Retail_Data_Analyst" class="mini-project-link"
-                        target="_blank" rel="noopener">
-                        View on GitHub →
-                    </a>
+                    <div class="tech-row">
+                        <span class="tech-chip">Python</span>
+                        <span class="tech-chip">Web Scraping</span>
+                        <span class="tech-chip">Cron Scheduling</span>
+                        <span class="tech-chip">Email Automation</span>
+                        <span class="tech-chip">BeautifulSoup</span>
+                        <span class="tech-chip">Automation Pipeline</span>
+                    </div>
                 </div>
 
                 <!-- Customer Service Dashboard -->
-                <div class="mini-project-card">
-                    <h3>📊 Customer Service Performance Dashboard</h3>
-                    <p>
-                        Built a web-based dashboard featuring dynamic charts, real-time data filtering, and responsive
-                        design for optimal cross-device visualization.
+                <div class="project-card">
+                    <div class="project-top">
+                        <div>
+                            <div class="project-title">Customer Service Performance Dashboard</div>
+                            <div class="project-meta">Full-Stack Development · Data Visualisation · Rapid Prototyping</div>
+                        </div>
+                        <span class="project-badge">Live Demo</span>
+                    </div>
+                    <p class="project-desc">
+                        Rapidly vibe-coded an interactive web-based dashboard for weekly customer service performance visualisation. Features dynamic charts, real-time data filtering, and a fully responsive layout — built from idea to deployment in a single session.
                     </p>
-                    <a href="https://minzhihuang.github.io/Chloe_demo_dashboard/" class="mini-project-link"
-                        target="_blank" rel="noopener">
-                        View Dashboard →
-                    </a>
+                    <div class="tech-row">
+                        <span class="tech-chip">HTML5</span>
+                        <span class="tech-chip">CSS3</span>
+                        <span class="tech-chip">JavaScript</span>
+                        <span class="tech-chip">Chart.js</span>
+                        <span class="tech-chip">Data Visualisation</span>
+                    </div>
+                    <div class="project-links-row">
+                        <a href="https://minzhihuang.github.io/Chloe_demo_dashboard/" class="proj-link proj-link-solid" target="_blank" rel="noopener">
+                            Live Dashboard ↗
+                        </a>
+                    </div>
+                </div>
+
+                <div class="coming-block">
+                    <div class="coming-title">More Automation Projects In Progress</div>
+                    <p>AI agents, workflow orchestration, and intelligent task automation systems under active development.</p>
+                </div>
+            </section>
+
+            <!-- ── AI ENGINEER ── -->
+            <section class="content-section" id="ai-engineer">
+                <div class="section-header">
+                    <span class="section-number">03</span>
+                    <h2 class="section-title">AI Engineer Work</h2>
+                </div>
+
+                <!-- Lovable Demo -->
+                <div class="project-card">
+                    <div class="project-top">
+                        <div>
+                            <div class="project-title">Vibe Code Product Demo</div>
+                            <div class="project-meta">Full-Stack AI App · Rapid Prototyping · Product Demo</div>
+                        </div>
+                        <span class="project-badge">Live</span>
+                    </div>
+                    <p class="project-desc">
+                        Built a fully interactive product demo using AI-assisted development, showcasing end-to-end engineering from prompt to deployed application. Demonstrates rapid prototyping capabilities and the ability to ship production-quality AI-powered interfaces at speed.
+                    </p>
+                    <div class="tech-row">
+                        <span class="tech-chip">AI-assisted Dev</span>
+                        <span class="tech-chip">Full-Stack</span>
+                        <span class="tech-chip">Rapid Prototyping</span>
+                        <span class="tech-chip">Product Design</span>
+                    </div>
+                    <div class="project-links-row">
+                        <a href="https://minzhihuang.lovable.app/" class="proj-link proj-link-solid" target="_blank" rel="noopener">
+                            View Demo ↗
+                        </a>
+                    </div>
+                </div>
+
+                <div class="coming-block">
+                    <div class="coming-title">LLM Applications &amp; AI Agents — Coming Soon</div>
+                    <p>RAG pipelines, LangChain agents, FastAPI services, and production AI systems currently in development.</p>
+                </div>
+            </section>
+
+            <!-- ── NLP / AI RESEARCH ── -->
+            <section class="content-section" id="nlp-ai">
+                <div class="section-header">
+                    <span class="section-number">04</span>
+                    <h2 class="section-title">NLP / AI Research</h2>
                 </div>
 
                 <!-- BioLaySumm -->
-                <div class="mini-project-card">
-                    <h3>📝 BioLaySumm: Biomedical Lay Summarization</h3>
-                    <p>
-                        Benchmarked LLMs (BioMistral-7B, GPT-3.5, Mixtral-8x7B) to transform complex biomedical research
-                        into accessible summaries for non-expert audiences.
+                <div class="project-card">
+                    <div class="project-top">
+                        <div>
+                            <div class="project-title">BioLaySumm: Biomedical Lay Summarization</div>
+                            <div class="project-meta">NLP · Large Language Models · ACL 2023 BioNLP Workshop</div>
+                        </div>
+                        <span class="project-badge">Featured</span>
+                    </div>
+                    <p class="project-desc">
+                        Participated in the <strong>BioLaySumm 2023 Shared Task</strong> at the ACL 2023 BioNLP Workshop. Benchmarked and optimised multiple large language models — BioMistral-7B, GPT-3.5, and Mixtral-8×7B — to automatically generate lay summaries of complex biomedical research articles, making scientific content accessible to non-expert audiences through simplified terminology and background context.
                     </p>
-                    <a href="https://github.com/MinzhiHuang/BioLaySumm" class="mini-project-link" target="_blank"
-                        rel="noopener">
-                        View on GitHub →
-                    </a>
+                    <div class="tech-row">
+                        <span class="tech-chip">Python</span>
+                        <span class="tech-chip">Large Language Models</span>
+                        <span class="tech-chip">Transformers</span>
+                        <span class="tech-chip">NLP</span>
+                        <span class="tech-chip">Few-shot Learning</span>
+                        <span class="tech-chip">Biomedical AI</span>
+                        <span class="tech-chip">EDA</span>
+                    </div>
+                    <div class="project-links-row">
+                        <a href="https://github.com/MinzhiHuang/BioLaySumm" class="proj-link proj-link-solid" target="_blank" rel="noopener">
+                            GitHub →
+                        </a>
+                        <a href="https://biolaysumm.org/2023/" class="proj-link proj-link-outline" target="_blank" rel="noopener">
+                            BioLaySumm Task ↗
+                        </a>
+                    </div>
                 </div>
 
-                <!-- Coming soon -->
-                <div class="mini-project-card">
-                    <h3>🔬 More Projects Coming Soon</h3>
-                    <p>
-                        Machine learning models, predictive analytics, and AI automation systems currently under
-                        development...
+                <!-- Dashboard -->
+                <div class="project-card">
+                    <div class="project-top">
+                        <div>
+                            <div class="project-title">Customer Service Performance Dashboard</div>
+                            <div class="project-meta">Data Visualisation · Full-Stack Development</div>
+                        </div>
+                    </div>
+                    <p class="project-desc">
+                        An interactive web-based dashboard for weekly customer service performance visualisation and analysis. Features dynamic charts, real-time data filtering, and a fully responsive layout for cross-device use.
                     </p>
-                    <a href="#data-scientist" class="mini-project-link">Explore All Projects →</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Scroll indicator -->
-        <div class="scroll-indicator" aria-hidden="true">
-            <div style="font-size: 1.5rem;">↓</div>
-        </div>
-    </section>
-
-    <!-- =========================
-         Second page content
-         ========================= -->
-    <div class="content-background">
-        <!-- Recent Activities Section -->
-        <section class="content-section" id="recent-activities">
-            <h2 class="section-title"><span class="emoji">🚀</span><span class="text">Recent Activities</span></h2>
-            <div class="recent-activities-section">
-                <div class="activities-content">
-                    <p class="activity-item">
-                        <strong>📚 Research & Learning:</strong> Currently studying more about the <strong>AI and Data
-                            market</strong> to stay updated with the latest trends and opportunities.
-                    </p>
-                    <p class="activity-item">
-                        <strong>💻 Vibe Code Demo:</strong> Built a product demo showcasing my development work. Check
-                        it out at <a href="https://minzhihuang.lovable.app/" target="_blank"
-                            rel="noopener">minzhihuang.lovable.app</a>.
-                    </p>
-                    <p class="activity-item">
-                        <strong>🤖 Automation Project:</strong> Created an automated web scraper that runs daily at
-                        <strong>8 AM, 1 PM, and 6 PM</strong> to search for job opportunities and automatically sends
-                        all relevant job postings directly to my email inbox.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Data Analyst Work -->
-        <section class="content-section" id="data-analyst">
-            <h2 class="section-title"><span class="emoji">📊</span><span class="text">Data Analyst Work</span></h2>
-
-            <!-- Retail Data Analyst Project -->
-            <div class="project-card">
-                <div class="featured-badge">⭐ Featured Project</div>
-                <div class="project-header">
-                    <div class="project-icon">📊</div>
-                    <div class="project-info">
-                        <h3>Retail Data Analyst</h3>
-                        <div class="project-type">Data Analysis • SQL • Power BI • Business Intelligence</div>
+                    <div class="tech-row">
+                        <span class="tech-chip">HTML5</span>
+                        <span class="tech-chip">CSS3</span>
+                        <span class="tech-chip">JavaScript</span>
+                        <span class="tech-chip">Chart.js</span>
+                        <span class="tech-chip">Data Visualisation</span>
+                    </div>
+                    <div class="project-links-row">
+                        <a href="https://minzhihuang.github.io/Chloe_demo_dashboard/" class="proj-link proj-link-solid" target="_blank" rel="noopener">
+                            Live Dashboard ↗
+                        </a>
                     </div>
                 </div>
-                <div class="project-description">
-                    A comprehensive retail data analysis project analyzing 60,000+ customer transactions across 30
-                    stores.
-                    Implemented a star schema design for optimized analytical performance, performed data quality checks
-                    and cleaning,
-                    and created interactive dashboards using Power BI. The dataset includes customer demographics,
-                    transaction metrics,
-                    and store information with detailed SQL analysis.
-                </div>
-                <div class="tech-stack">
-                    <h4>Tech Stack</h4>
-                    <div class="tech-tags">
-                        <div class="tech-tag">SQL</div>
-                        <div class="tech-tag">Power BI</div>
-                        <div class="tech-tag">Data Analysis</div>
-                        <div class="tech-tag">Star Schema</div>
-                        <div class="tech-tag">Business Intelligence</div>
-                        <div class="tech-tag">Data Quality</div>
-                    </div>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/MinzhiHuang/Retail_Data_Analyst" class="project-link" target="_blank"
-                        rel="noopener">💻 GitHub Repository</a>
-                </div>
-            </div>
-        </section>
 
-        <!-- Data Scientist Work -->
-        <section class="content-section" id="data-scientist">
-            <h2 class="section-title"><span class="emoji">🔬</span><span class="text">Data Scientist Work</span></h2>
-            <div class="coming-soon">
-                <h3>🚀 Exciting Projects Coming Soon</h3>
-                <p>Machine learning models, predictive analytics, and advanced statistical modeling projects in
-                    progress...</p>
-            </div>
-        </section>
+                <div class="coming-block">
+                    <div class="coming-title">More NLP Research &amp; LLM Projects In Progress</div>
+                    <p>Fine-tuning experiments, benchmark evaluations, and applied NLP systems under active development.</p>
+                </div>
+            </section>
 
-        <!-- NLP/AI Work -->
-        <section class="content-section" id="nlp-ai">
-            <h2 class="section-title"><span class="emoji">🤖</span><span class="text">NLP/AI Work</span></h2>
+            <!-- ── BLOG ── -->
+            <section class="content-section" id="blog-preview">
+                <div class="section-header">
+                    <span class="section-number">05</span>
+                    <h2 class="section-title">Blog</h2>
+                </div>
+                <div class="coming-block">
+                    <div class="coming-title">Content Coming Soon</div>
+                    <p>Technical insights, career journey reflections, and data science tutorials — launching soon.</p>
+                </div>
+            </section>
 
-            <!-- BioLaySumm (detailed card) -->
-            <div class="project-card">
-                <div class="featured-badge">⭐ Featured Project</div>
-                <div class="project-header">
-                    <div class="project-icon">📝</div>
-                    <div class="project-info">
-                        <h3>BioLaySumm: Biomedical Lay Summarization</h3>
-                        <div class="project-type">NLP • Large Language Models • Hackathon</div>
-                    </div>
-                </div>
-                <div class="project-description">
-                    🏆 Participated in BioLaySumm 2023 Shared Task @ ACL 2023 BioNLP Workshop. Benchmarked and optimized
-                    multiple large language models (BioMistral-7B, GPT-3.5, Mixtral-8x7B) to automatically generate lay
-                    summaries of complex biomedical research articles. The goal is to make scientific research
-                    accessible to non-expert audiences by transforming technical content into readable, comprehensible
-                    summaries with background information and simplified terminology.
-                </div>
-                <div class="tech-stack">
-                    <h4>Tech Stack</h4>
-                    <div class="tech-tags">
-                        <div class="tech-tag">Python</div>
-                        <div class="tech-tag">Exploratory Data Analysis</div>
-                        <div class="tech-tag">Large Language Models</div>
-                        <div class="tech-tag">Transformers</div>
-                        <div class="tech-tag">NLP</div>
-                        <div class="tech-tag">Few-shot Learning</div>
-                        <div class="tech-tag">Biomedical AI</div>
-                    </div>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/MinzhiHuang/BioLaySumm" class="project-link" target="_blank"
-                        rel="noopener">💻 GitHub Repository</a>
-                    <a href="https://biolaysumm.org/2023/" class="project-link secondary" target="_blank"
-                        rel="noopener">🌐 BioLaySumm Task</a>
-                </div>
-            </div>
-
-            <!-- Customer Service Performance Dashboard (detailed) -->
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon">📊</div>
-                    <div class="project-info">
-                        <h3>Customer Service Performance Dashboard</h3>
-                        <div class="project-type">Data Visualization • Full-Stack Development</div>
-                    </div>
-                </div>
-                <div class="project-description">
-                    Rapidly vibe-coded an interactive web-based dashboard for weekly customer service performance
-                    visualization and analysis.
-                    Features dynamic charts, filtering capabilities, and a responsive design for optimal viewing across
-                    devices.
-                </div>
-                <div class="tech-stack">
-                    <h4>Tech Stack</h4>
-                    <div class="tech-tags">
-                        <div class="tech-tag">HTML5</div>
-                        <div class="tech-tag">CSS3</div>
-                        <div class="tech-tag">JavaScript</div>
-                        <div class="tech-tag">Chart.js</div>
-                        <div class="tech-tag">Data Visualization</div>
-                        <div class="tech-tag">Vibe Coding</div>
-                    </div>
-                </div>
-                <div class="project-links">
-                    <a href="https://minzhihuang.github.io/Chloe_demo_dashboard/" class="project-link" target="_blank"
-                        rel="noopener">📊 View Live Dashboard</a>
-                </div>
-            </div>
-
-            <div class="coming-soon">
-                <h3>🚀 More AI Projects Coming Soon</h3>
-                <p>Additional AI agents, LLM applications, and intelligent automation systems under development...</p>
-            </div>
-        </section>
-
-        <!-- Blog -->
-        <section class="content-section" id="blog-preview">
-            <h2 class="section-title"><span class="emoji">✨</span><span class="text">Blog</span></h2>
-            <div class="coming-soon">
-                <h3>🚀 Exciting Content Coming Soon</h3>
-                <p>Technical insights, career journey stories, and data science tutorials coming very soon...</p>
-            </div>
-        </section>
+        </main>
     </div>
 
-    <!-- =========================
-         Scripts (UX interactions)
-         ========================= -->
     <script>
-        // Sticky navbar style on scroll
-        window.addEventListener('scroll', function () {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) navbar.classList.add('scrolled');
-            else navbar.classList.remove('scrolled');
-        });
+        // Highlight active sidebar nav link on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.sidebar-nav a');
 
-        // Smooth scroll for in-page anchors
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                // only intercept if anchor points to an element on this page
-                const target = document.querySelector(this.getAttribute('href'));
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    const active = document.querySelector(`.sidebar-nav a[href="#${entry.target.id}"]`);
+                    if (active) active.classList.add('active');
+                }
+            });
+        }, { rootMargin: '-20% 0px -65% 0px' });
+
+        sections.forEach(s => io.observe(s));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                const target = document.querySelector(a.getAttribute('href'));
                 if (target) {
                     e.preventDefault();
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1315,36 +1064,24 @@
             });
         });
 
-        // Button hover micro-interaction
-        document.querySelectorAll('.btn').forEach(button => {
-            button.addEventListener('mouseenter', function () {
-                this.style.transform = 'translateY(-3px) scale(1.05)';
+        // Fade-in project cards on scroll
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    fadeObserver.unobserve(entry.target);
+                }
             });
-            button.addEventListener('mouseleave', function () {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
+        }, { threshold: 0.08 });
 
-        // Resume dropdown toggle
-        function toggleResumeDropdown() {
-            const dropdown = document.querySelector('.resume-dropdown');
-            const isActive = dropdown.classList.toggle('active');
-            // Update aria-expanded for accessibility
-            dropdown.querySelector('.resume-btn').setAttribute('aria-expanded', String(isActive));
-        }
-        window.toggleResumeDropdown = toggleResumeDropdown; // expose to inline onclick
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function (event) {
-            const dropdown = document.querySelector('.resume-dropdown');
-            if (!dropdown.contains(event.target)) dropdown.classList.remove('active');
-        });
-
-        // Close dropdown via ESC key
-        document.addEventListener('keydown', function (event) {
-            if (event.key === 'Escape') document.querySelector('.resume-dropdown').classList.remove('active');
+        document.querySelectorAll('.project-card, .coming-block, .activity-list').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(16px)';
+            el.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
+            fadeObserver.observe(el);
         });
     </script>
-</body>
 
+</body>
 </html>
