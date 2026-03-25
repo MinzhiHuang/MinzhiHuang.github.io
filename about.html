@@ -20,7 +20,7 @@
             --ink-2:       #3d3d3b;
             --ink-3:       #6b6b68;
             --ink-4:       #9b9a96;
-            --sidebar-w:   280px;
+            --sidebar-w:   clamp(220px, 22vw, 290px);
             --font-serif:  'Playfair Display', Georgia, serif;
             --font-sans:   'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
@@ -154,8 +154,8 @@
         }
 
         .profile-photo {
-            width: 200px;
-            height: 240px;
+            width: 100%;
+            aspect-ratio: 5 / 6;
             border-radius: 12px;
             object-fit: cover;
             object-position: center 0%;
@@ -236,8 +236,7 @@
         .main {
             flex: 1;
             min-width: 0;
-            padding: 64px 72px;
-            
+            padding: clamp(32px, 5vw, 64px) clamp(28px, 5.5vw, 72px);
         }
 
         .content-section {
